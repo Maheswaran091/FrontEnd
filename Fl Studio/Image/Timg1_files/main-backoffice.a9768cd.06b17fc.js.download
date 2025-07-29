@@ -1,0 +1,843 @@
+(()=>{var n=class{static kickoff(e){n.write("Kicking off",e.constructor.name)}static isProduction(){let e="fl_enable_logging";return document.cookie.includes(e)||window.location.search.includes(e)?!1:window.location.href.includes("image-line.com")}static getPerformanceMarker(e){if(!window.performance)return n._originalConsoleLog("Performance API is not supported"),0;let t=performance.getEntriesByName(e);return t[0]?t[0].startTime:0}static write(){if(n.isProduction())return;let e=Array.from(arguments),t=n.getPerformanceMarker("appStart"),i=performance.now(),o=Math.round(i-t);console.log(`%c${o}ms`,"color: #fff; background: #000; padding: 2px 5px; border-radius: 3px;",...e)}};var D=class{constructor(e=36e5){this.cacheDuration=e,this.cfEndpoint="https://www.image-line.com/cdn-cgi/trace",this.localStorageKey="CFTraceData"}getBrowserLanguage(e="en"){return navigator&&navigator.language?navigator.language:e}async get(){let e=localStorage.getItem(this.localStorageKey);if(e)try{let{timestamp:l,data:p}=JSON.parse(e);if(Date.now()-l<this.cacheDuration)return p.browserLanguage=this.getBrowserLanguage(),p}catch{}let t=fetch(this.cfEndpoint),i=new Promise((l,p)=>setTimeout(()=>p(new Error("Request timed out")),1e3)),o;try{o=await Promise.race([t,i])}catch(l){throw n.write("Error:",l),l}let a=await o.text(),c={};return a.split(`
+`).forEach(l=>{if(l){let[p,r]=l.split("=");c[p]=r}}),c.browserLanguage=this.getBrowserLanguage(),localStorage.setItem(this.localStorageKey,JSON.stringify({timestamp:Date.now(),data:c})),c}},I=D;var A=class{constructor(){this.config=this.parseEnvConfig(),this.currentEnv=this.determineCurrentEnv()}parseEnvConfig(){try{let e=document.getElementById("JS_ENV");if(e)return JSON.parse(e.textContent)}catch(e){n.write("Error: Error parsing environment configuration:",e)}return null}determineCurrentEnv(){if(!this.config)return null;let e=window.location.host;for(let[t,i]of Object.entries(this.config))if(e===i.WWW_HOST)return n.write(`Current environment determined: ${t}`),t;return console.warn(`No matching environment found for host: ${e}`),null}getCurrentEnv(){return this.currentEnv}getValue(e,t=null){if(!this.config||!this.currentEnv)return t;let i=this.config[this.currentEnv];return i?.[e]!==void 0?i[e]:t}getValueForEnv(e,t,i=null){if(!this.config||!this.config[e])return i;let o=this.config[e];return o?.[t]!==void 0?o[t]:i}getValueByHost(e,t=null){if(!this.config)return t;let i=window.location.host;for(let[o,a]of Object.entries(this.config))if(i===a.WWW_HOST)return a[e]!==void 0?a[e]:t;return t}getSupportHost(e="support.image-line.com"){return this.getValueByHost("SUPPORT_HOST",e)}getSupportApiUrl(e="https://support.image-line.com/api.php"){return this.getValueByHost("SUPPORT_API_URL",e)}},J=new A,E=J;typeof window.injectCSS!="function"&&(window.injectCSS=function(s){var e=document.createElement("style");e.appendChild(document.createTextNode(s)),document.head.appendChild(e)});typeof window.updateSelectorText!="function"&&(window.updateSelectorText=function(s,e){document.querySelectorAll(s).forEach(t=>{t.innerHTML=e})});typeof window.findElements!="function"&&(window.findElements=function(s,e){let t=document.querySelectorAll(s),i=[];return t.forEach(o=>{o.innerText.includes(e)&&i.push(o)}),i});typeof window.updateSelectorAttribute!="function"&&(window.updateSelectorAttribute=function(s,e,t){let i=document.querySelectorAll(s);i.length===0&&n.write("Error: No elements found for selector",s),i.forEach(o=>{o.setAttribute(e,t),n.write("Updated attribute",e,"to",t,"for",o)})});typeof window.sendDataLayerEvent!="function"&&(window.sendDataLayerEvent=function(s){typeof dataLayer<"u"&&dataLayer.push(s)});typeof window.getUrlParameter!="function"&&(window.getUrlParameter=function(s,e=!1){s=s.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var t=new RegExp("[\\?&]"+s+"=([^&#]*)"),i=t.exec(location.search);return i===null?e:decodeURIComponent(i[1].replace(/\+/g," "))});typeof window.setCookie!="function"&&(window.setCookie=function(s,e,t){let i=new Date;i.setTime(i.getTime()+t*24*60*60*1e3);let o=window.location.hostname.includes("image-line.com")?".image-line.com":window.location.hostname;document.cookie=`${s}=${e}; expires=${i.toUTCString()}; path=/; domain=${o}; SameSite=Lax`});typeof window.getCookie!="function"&&(window.getCookie=function(s,e=!1){let i=`; ${document.cookie}`.split(`; ${s}=`);return i.length===2?i.pop().split(";").shift():e});if(typeof window.getCurrencyConversion!="function"){let s={};window.getCurrencyConversion=async function(e,t,i){if(t=t.toLowerCase(),i=i.toLowerCase(),t===i)return e;if(!s[t])try{let a=await fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${t}.json`);if(!a.ok)throw new Error(`Failed to fetch conversion rates for ${t}`);let c=await a.json();s[t]=c[t]}catch(a){return n.write("Error:",a),null}let o=s[t]?.[i];return typeof o!="number"?(n.write(`Error: Conversion rate from ${t} to ${i} not found.`),null):e*o}}typeof window.reportAmplitudeVariant!="function"&&(window.reportAmplitudeVariant=function(s,e,t=10,i=700){let o=0,a=()=>{if(typeof amplitude<"u"&&typeof amplitude.Identify=="function")try{let c=new amplitude.Identify;c.set("Experiment_"+s,e),amplitude.identify(c),n.write("Amplitude data set successfully for variant",s,e)}catch(c){n.write("Error: Failed to set amplitude data:",c)}else o<t?(o++,setTimeout(()=>a(),i)):n.write("Error: Amplitude is not available after maximum retries.")};a()});typeof window.updateUrlParameters!="function"&&(window.updateUrlParameters=function(s,e,t=!1){let i;try{i=new URL(s,window.location.origin)}catch{return n.write("Error: Invalid URL provided:",s),s}let o=new URLSearchParams(i.search);for(let[a,c]of Object.entries(e))(t||!o.has(a))&&o.set(a,c);return i.search=o.toString(),s.startsWith("http")?i.toString():i.pathname+i.search+i.hash});var B=class{constructor(){this.cookieName="il-im-ref",this.cookieExpiryDays=365,this.initialize()}initialize(){n.write("[Impact clickid tracker]","Initializing"),this.checkAndStoreIRClickId()}checkAndStoreIRClickId(){let e=window.getUrlParameter("im_ref");e&&(window.setCookie(this.cookieName,e,this.cookieExpiryDays),n.write("[Impact clickid tracker]","Stored impact clickid:",e))}getStoredIRClickId(){return window.getCookie(this.cookieName,null)}},F=class{constructor(){this.utmParams={},this.pageSlug="",this.monitorInterval=null,this.processedCount=0,this.impactTracker=new B,this.initialize()}initialize(){n.write("[CheckoutLinkModifier]","Initializing"),this.extractPageSlug(),this.extractUtmParams(),this.modifyCheckoutLinks(),this.monitorInterval=setInterval(()=>{this.modifyCheckoutLinks()},100)}stopMonitoring(){this.monitorInterval&&(clearInterval(this.monitorInterval),this.monitorInterval=null,n.write("[CheckoutLinkModifier]","Stopped monitoring for new checkout links"))}extractPageSlug(){let e=window.location.pathname;this.pageSlug=encodeURIComponent(e),n.write("[CheckoutLinkModifier]","Extracted page slug:",this.pageSlug)}extractUtmParams(){let e=new URLSearchParams(window.location.search);["utm_source","utm_medium","utm_campaign","utm_content","utm_term","machineId","inapp"].forEach(i=>{e.has(i)&&(this.utmParams[i]=e.get(i),n.write("[CheckoutLinkModifier]",`Extracted UTM param: ${i} = ${this.utmParams[i]}`))}),n.write("[CheckoutLinkModifier]","Extracted UTM params:",this.utmParams)}hasPageSlugParam(e){try{return new URL(e,window.location.origin).searchParams.has("ref_page_slug")}catch{return!1}}modifyCheckoutLinks(){let e=document.querySelectorAll("a[href*='shop_flcloud2.php?ord=']");if(e.length===0)return;let t={...this.utmParams,ref_page_slug:this.pageSlug},i=this.impactTracker.getStoredIRClickId();i&&(t.ref_im_id=i);let o=0;e.forEach(a=>{let c=a.getAttribute("href");if(this.hasPageSlugParam(c))return;let l=window.updateUrlParameters(c,t);a.setAttribute("href",l),o++}),o>0&&(this.processedCount+=o,n.write("[CheckoutLinkModifier]",`Modified ${o} new checkout links (total: ${this.processedCount})`))}},$=class{constructor(){this.cookieName="_conv_v",n.write("[convert-tracking]"," init ConvertExperimentTracker")}reportToAmplitude(){let e=window.getCookie(this.cookieName,"");if(n.write("[convert-tracking]","Cookie value",e),!e){n.write("[convert-tracking]","No Convert cookie found");return}try{let i=decodeURIComponent(e).match(/exp:(\{.*\})/);if(!i||!i[1]){n.write("[convert-tracking]","No experiment data found in Convert cookie");return}let o=i[1],a=/(\d+)\.{[^{]*?v\.(\d+)[^}]*?}/g,c,l=0;for(;(c=a.exec(o))!==null;){let p=c[1],r=c[2],m="conv_"+p;n.write("[convert-tracking]",`Reporting experiment ${m} with variation ${r}`),window.reportAmplitudeVariant(m,r,20,250),l++}n.write("[convert-tracking]",`Reported ${l} experiment(s) to Amplitude`)}catch(t){n.write("Error: Error processing Convert cookie:",t)}}},T=class{constructor(){this.cookieName="il-ft-lt",this.cookieExpiryDays=365,this.maxEntries=10,this.maxCookieSize=4e3,this.utmParams=this.getUTMParamsFromUrl(),this.storeUTMParams()}getUTMParamsFromUrl(){let e={},t=new URLSearchParams(window.location.search),i=["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];for(let o of i)t.has(o)&&(e[o]=t.get(o));return e}areUtmParamsIdentical(e,t){let i=["utm_source","utm_medium","utm_campaign"],o=["utm_content","utm_term"];for(let a of i)if(a in e!=a in t||a in e&&e[a]!==t[a])return!1;for(let a of o)if(a in e&&a in t&&e[a]!==t[a])return!1;return!0}storeUTMParams(){if(Object.keys(this.utmParams).length===0)return;let e=Math.floor(Date.now()/1e3),t=this.getStoredData(),i=!1,o=t.findIndex(a=>this.areUtmParamsIdentical(a.params,this.utmParams));if(o!==-1){let a=t[o];a.last_touch=e,a.hit_count=(a.hit_count||1)+1,i=!0}else{let a={first_touch:e,last_touch:e,hit_count:1,params:this.utmParams};t.push(a),i=!0}if(i){if(t.sort((c,l)=>(l.last_touch||l.first_touch)-(c.last_touch||c.first_touch)),t.length>this.maxEntries&&(t=t.slice(0,this.maxEntries)),btoa(JSON.stringify(t)).length>this.maxCookieSize)for(;t.length>1&&(t.pop(),!(btoa(JSON.stringify(t)).length<=this.maxCookieSize)););window.setCookie(this.cookieName,btoa(JSON.stringify(t)),this.cookieExpiryDays),n.write("Stored UTM parameters:",this.utmParams,"Cookie size:",btoa(JSON.stringify(t)).length)}}getStoredData(){let e=window.getCookie(this.cookieName,"[]");try{return JSON.parse(atob(e))}catch(t){return n.write("Error: Error parsing UTM cookie data:",t),[]}}};var N=class{constructor(e){this.cache={},this.cacheName="flpress_"+e+"_cache",this.cacheBackend=null,this.localStorageAvailable()&&(this.cacheBackend=window.localStorage),this.cacheBackend&&this.fetch()}getCurrentUnixTs(){return Math.round(new Date().getTime()/1e3)}delete(e){this.cacheBackend&&this.cacheBackend.removeItem(e)}get(e){if(this.cacheBackend){if(this.fetch(),this.cache[e]&&this.cache[e].expire>this.getCurrentUnixTs())return this.cache[e].value;this.delete(e)}return null}set(e,t,i){this.cacheBackend&&(this.cache[e]={value:t,expire:this.getCurrentUnixTs()+parseInt(i)},this.persist())}fetch(){this.cacheBackend&&(this.cache=JSON.parse(this.cacheBackend.getItem(this.cacheName))||{})}persist(){this.cacheBackend&&this.cacheBackend.setItem(this.cacheName,JSON.stringify(this.cache))}localStorageAvailable(){try{let e="__storage_test__";return window.localStorage.setItem(e,e),window.localStorage.removeItem(e),!0}catch{return!1}}},R=class{constructor(){this.proxyUrl="/api_proxy.php",this.fallbackApiUrl="https://support.image-line.com/api.php",this.baseUrl=this.getBaseUrl(),n.write("[bundling-modal-api]","Base URL set to:",this.baseUrl)}getUrlParameter(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var t=new RegExp("[\\?&]"+e+"=([^&#]*)"),i=t.exec(location.search);return i===null?"":decodeURIComponent(i[1].replace(/\+/g," "))}isValidSubdomain(e){var t=/^[a-zA-Z0-9-]+\.image-line\.com$/;return t.test(e)}getBaseUrl(){let e=window.location.host;var t=this.getUrlParameter("il_base_url");if(t&&this.isValidSubdomain(t))return"https://"+t+"/api.php";try{if(typeof E=="object"&&E!==null)return E.getSupportApiUrl(this.fallbackApiUrl)}catch(i){n.write("Error: Error accessing environment config:",i)}return this.fallbackApiUrl}buildUrl(e){let t=e();return`${this.baseUrl}?${t}`}fetchData(e){let t=this.buildUrl(e);return fetch(t,{credentials:"include"}).then(i=>{if(!i.ok)throw new Error(`Error fetching data: ${i.status} ${i.statusText}`);return i.text()}).then(i=>{try{return JSON.parse(i)}catch(o){throw n.write("[main-backoffice]","Error parsing JSON data:",o),new Error("Invalid JSON data received")}}).catch(i=>(n.write("[main-backoffice]","Error fetching data:",i),null))}fetchDataJSONP(e){return new Promise((t,i)=>{let o=this.buildUrl(e),a=document.createElement("script"),c=`jsonp_callback_${Date.now()}_${Math.floor(Math.random()*1e3)}`,p=setTimeout(()=>{delete window[c],document.body.removeChild(a),i(new Error("Timeout: No valid JSONP response received"))},2e3);window[c]=r=>{clearTimeout(p),delete window[c],document.body.removeChild(a),t(r)},a.src=`${o}&callback=${c}&source=wordpress`,a.onerror=()=>{clearTimeout(p),delete window[c],document.body.removeChild(a),i(new Error("Error fetching data"))},document.body.appendChild(a)})}},M=class{constructor(){this.forceVersion=1,this.convertExperienceId="1004116569",this.cookieName=`il-exp-${this.convertExperienceId}`,this.amplitudeRetryCount=0,this.maxRetries=10,this.retryInterval=700,this.convertVariationID="",this.variantName="",this.apiClient=new R,this.cache=new N("ModalpricingCache"),this.checkoutLinksTimeout=null,this.modalDisabled=!1,this.flCloudSkus=["FLCLOUD_MONTHLY","FLCLOUD_ANNUAL","FLCLOUD_PRO_MONTHLY","FLCLOUD_PRO_ANNUAL"],this.userCheckCacheName="flcloud_user_ownership_check",this.userCheckCacheExpiry=60*60*1e3,this.ProductNameMap={31010:"Fruity Edition",31020:"Producer Edition",31035:"Signature Bundle",31045:"All Plugins Edition"},this.currencyConfig={USD:{symbol:"$",compactSymbol:"$",code:"USD",decimal:".",thousands:",",postfix:!0},EUR:{symbol:"\u20AC",compactSymbol:"\u20AC",code:"EUR",decimal:",",thousands:".",postfix:!1},GBP:{symbol:"\xA3",compactSymbol:"\xA3",code:"GBP",decimal:".",thousands:",",postfix:!1},JPY:{symbol:"\xA5",compactSymbol:"\xA5",code:"JPY",decimal:".",thousands:",",postfix:!1},AUD:{symbol:"$",compactSymbol:"AU$",code:"AUD",decimal:".",thousands:",",postfix:!0},CAD:{symbol:"$",compactSymbol:"CA$",code:"CAD",decimal:".",thousands:",",postfix:!0},MXN:{symbol:"$",compactSymbol:"MX$",code:"MXN",decimal:".",thousands:",",postfix:!0},ZAR:{symbol:"R",compactSymbol:"R",code:"ZAR",decimal:".",thousands:",",postfix:!1},INR:{symbol:"\u20B9",compactSymbol:"\u20B9",code:"INR",decimal:".",thousands:",",postfix:!1},BRL:{symbol:"$",compactSymbol:"R$",code:"BRL",decimal:",",thousands:".",postfix:!0},TRY:{symbol:"\u20BA",compactSymbol:"\u20BA",code:"TRY",decimal:",",thousands:".",postfix:!1},PLN:{symbol:"z\u0142",compactSymbol:"z\u0142",code:"PLN",decimal:",",thousands:" ",postfix:!1},THB:{symbol:"\u0E3F",compactSymbol:"\u0E3F",code:"THB",decimal:".",thousands:",",postfix:!1},COP:{symbol:"$",compactSymbol:"COP",code:"COP",decimal:",",thousands:".",postfix:!0},CLP:{symbol:"$",compactSymbol:"CLP",code:"CLP",decimal:",",thousands:".",postfix:!0},IDR:{symbol:"Rp",compactSymbol:"Rp",code:"IDR",decimal:",",thousands:".",postfix:!1},RON:{symbol:"lei",compactSymbol:"RON",code:"RON",decimal:",",thousands:".",postfix:!1},HUF:{symbol:"Ft",compactSymbol:"Ft",code:"HUF",decimal:",",thousands:" ",postfix:!1},CZK:{symbol:"K\u010D",compactSymbol:"K\u010D",code:"CZK",decimal:",",thousands:".",postfix:!1},UAH:{symbol:"\u20B4",compactSymbol:"\u20B4",code:"UAH",decimal:",",thousands:" ",postfix:!1},VND:{symbol:"\u20AB",compactSymbol:"\u20AB",code:"VND",decimal:",",thousands:".",postfix:!1},PEN:{symbol:"S/",compactSymbol:"S/",code:"PEN",decimal:".",thousands:",",postfix:!1},PHP:{symbol:"\u20B1",compactSymbol:"\u20B1",code:"PHP",decimal:".",thousands:",",postfix:!1},MAD:{symbol:"MAD",compactSymbol:"MAD",code:"MAD",decimal:",",thousands:".",postfix:!1}}}async checkUserOwnsFlCloud(){let e=this.getUserCheckFromCache();if(e!==null)return n.write("[main-backoffice]","Using cached user ownership data"),e.ownsFlCloud;try{n.write("[main-backoffice]","Fetching user ownership data");let t=await this.apiClient.fetchDataJSONP(()=>"call=check_login");if(!t.signedin||t.owned===!1)return this.cacheUserCheck(!1),!1;let i=Object.keys(t.owned||{}).some(o=>this.flCloudSkus.includes(o));return n.write("[main-backoffice]","User owns FL Cloud:",i),this.cacheUserCheck(i),i}catch(t){return n.write("[main-backoffice]","Error checking user ownership:",t),!1}}cacheUserCheck(e){let t={ownsFlCloud:e,timestamp:Date.now()};localStorage.setItem(this.userCheckCacheName,JSON.stringify(t))}getUserCheckFromCache(){try{let e=localStorage.getItem(this.userCheckCacheName);if(!e)return null;let t=JSON.parse(e);return Date.now()-t.timestamp<this.userCheckCacheExpiry?t:null}catch(e){return n.write("[main-backoffice]","Error reading cache:",e),null}}async shouldRun(){try{if(await this.checkUserOwnsFlCloud())return n.write("[main-backoffice]","User already owns FL Cloud, not showing modal"),!1;let i=await new I().get(),o=["abc","def"],a=i.loc.toLowerCase();n.write(`Checking if we should run the modal for location=${a}`)}catch(e){n.write("Error: Error fetching geolocation data",e)}return window.location.host==="www.image-line.com"||window.location.host==="localhost:8666"||window.location.host==="support.image-line.com"||window.location.host==="wp-static.int.image-line.com"}reloadPage(){window.location.reload()}stripTrailingSlash(e){return e.endsWith("/")?e.slice(0,-1):e}updateCheckoutLinks(){if(this.modalDisabled)return;let e=["?ord=31020","?ord=31010","?ord=31035","?ord=31045","?ord=31040","?ord=31037","?ord=31047","?ord=31036","?ord=31048","?ord=31049"];document.querySelectorAll("a[href*='shop_flcloud2.php']").forEach(i=>{let o=i.getAttribute("href")||"";if(!e.some(p=>o.includes(p))||this.getSKUfromURL(o).includes(":")||i.getAttribute("data-test-initialized")||i.hasAttribute("data-js-ignore"))return;n.write("[main-backoffice]","Updating checkout link",i.getAttribute("href"));let l=document.createElement("a");l.innerHTML=i.innerHTML,l.setAttribute("href",i.getAttribute("href")||""),l.setAttribute("class",i.getAttribute("class")||""),l.setAttribute("style",i.getAttribute("style")||""),i.parentNode.insertBefore(l,i.nextSibling),i.remove(),i.replaceWith(i.cloneNode(!0)),l.addEventListener("click",p=>{let r=p.target.closest("a"),m=this;if((r.getAttribute("class")||"").includes("prevent-bundle-modal")){n.write("[main-backoffice]","Skipping modal injection due to prevent-bundle-modal class");return}if(!r){console.warn("No <a> element found!");return}let w=r.getAttribute("class");if(w&&w.includes("prevent-bundle-modal")){n.write("[main-backoffice]","Skipping modal injection due to prevent-bundle-modal class");return}p.preventDefault(),p.stopPropagation();let b=r.getAttribute("href");m.injectModal(b),this.trackDataLayerEvent({event:"flcloudbundle_click_intercepted"})}),l.setAttribute("data-test-initialized","true")}),this.checkoutLinksTimeout=window.setTimeout(()=>{this.updateCheckoutLinks()},50)}getSKUfromURL(e){let t;try{t=new URL(e)}catch{t=new URL(e,window.location.origin)}return new URLSearchParams(t.search).get("ord")}async injectModal(e){this.lastOriginalHref=e;let t=document.getElementById("exp-bundling-modal"),i=!1;t&&(n.write("[main-backoffice]","Replacing existing modal with new content"),i=!0,t.remove());let o=window.innerHeight<1e3,a=this.getSKUfromURL(e),c=await this.fetchPricingData([a,"FLCLOUD_ANNUAL"],this.promoID);if(n.write("[main-backoffice]","Pricing data:",c),document.querySelectorAll(".il-modal").length>0){n.write("[main-backoffice]","Prevented modal from being injected");return}window.injectCSS(`
+			:root {}
+			.il-modal {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.8);
+				z-index: 100000;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.il-modal-content {
+				width: 80%;
+				max-width: 660px;
+				background-color: white;
+				border-radius: 6px;
+				max-height: calc(100vh - 40px);
+				scrollbar-color: #f6f6f6 transparent;
+  				scrollbar-width: thin;
+				position: relative;
+			}
+			.il-modal-close {
+			}
+			.il-modal-header {
+				background-color: #efefef;
+				color: #000;
+				padding: 20px;
+				border-top-left-radius: 6px;
+				border-top-right-radius: 6px;
+				display: flex;
+				flex-direction: column;
+				gap: 22px;
+			}
+			.il-modal-header img {
+				width: 40px;
+			}
+			.il-modal-header__title {
+				display: flex;
+				flex-direction: row;
+				font-size: 20px;
+				font-weight: 600;
+				font-size: 35px;
+				font-style: normal;
+				font-weight: 600;
+				gap: 10px;
+
+				font-size: 20px;
+			}
+			.il-modal-header__subtitle {
+				font-size: 15px;
+				max-width: 560px;
+			}
+			.il-modal-content-inner {
+				padding: 20px;
+				display: flex;
+				gap: 25px;
+				flex-direction: column;
+				height: 100%;
+				border-radius: 6px;
+			}
+			.il-modal-content__paragraph {
+				font-size: 16px;
+			}
+			.il-modal-content__actions {
+				display: flex;
+				gap: 15px;
+				align-items: center;
+				justify-content: flex-end;
+			}
+			.il-modal-content__actions img {
+				width: 50%;
+			}
+			.il-modal-content__action {
+				border-radius: 60px;
+				cursor: pointer;
+				text-decoration: none;
+				white-space: nowrap;
+			}
+			.il-modal-content__action.is-primary {
+				background-color: #FF7629;
+				padding: 10px 20px;
+				color: #fff;
+				font-size: 17px;
+				font-weight: 600;
+			}
+			.il-modal-content__action.is-secondary {
+				color: #000;
+				font-size: 15px;
+			}
+			.il-modal-content__cards {
+				display: flex;
+				gap: 5px;
+				align-items: center;
+				flex-direction: column;
+			}
+			.il-modal-content__card {
+				display: flex;
+				flex-direction: row;
+				width: 100%;
+				gap: 20px;
+				border-radius: 6px;
+				padding: 15px 20px;
+				align-items: center;
+				justify-content: space-between;
+				position: relative;
+				border: 2px solid rgba(0, 0, 0, 0.1);
+				background-color: #fff;
+			}
+
+			.il-modal-content__card.allow-hover:hover {
+				background-color: #f8f8f8;
+				cursor: pointer;
+			}
+			.il-modal-content__card__product {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+				margin-right: auto;
+			}
+			@media screen and (max-width: 768px) {
+				.il-modal-content__card__product .title {
+					max-width: 80%;
+				}
+			}
+			.il-modal-content__card__product .title {
+				font-weight: 600;
+				font-size: 15px;
+				line-height: 1.2em;
+			}
+			.il-modal-content__card__product .subtitle {
+				font-size: 0.8em;
+				font-size: 14px;
+				opacity: 0.7;
+				line-height: 1.35em;
+			}
+			.il-modal-content__card__text {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				gap: 3px;
+				font-size: 16px;
+			}
+			.il-modal-content__card__text > div {
+				display: flex;
+				flex-direction: column;
+				flex-shrink: 0;
+				white-space: nowrap;
+			}
+
+			/* mobile */
+			@media screen and (max-width: 768px) {
+				.il-modal-content__card__text {
+					flex-direction: row;
+					gap: 5px;
+					font-size: 17px;
+					font-weight: 500;
+				}
+				.il-modal-content__card.disallow-hover .il-modal-content__card__checkbox {
+					display: none;
+				}
+				.il-modal-content__cards {
+					gap: 10px;
+				}
+			}
+
+			.il-modal-content__card .badge {
+				font-size: 16px;
+				text-transform: uppercase;
+				padding: 0;
+				background-color: #B82E2E;
+				color: #fff;
+				border-radius: 3px;
+				padding: 4px 5px;
+			}
+			.il-modal-content__divider {
+				border-top: 1px solid rgba(0, 0, 0, 0.1);
+				margin: 0px 0;
+			}
+			.il-modal-content__card__plus-sign {
+				height:0px;
+				width:0px;
+				position: relative;
+			}
+			.il-modal-content__card__plus-sign span {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background-color: #888;
+				transform: translate(-50%, -50%);
+				font-size: 20px;
+				font-weight: 400;
+				color: #fff;
+				line-height: 0px;
+				z-index: 2;
+			}
+			.il-modal-content__card__plus-sign:last-child {
+				display: none;
+			}
+			.il-modal-fine {
+				font-size: 14px;
+				color: #888;
+				line-height: 1.3em;
+				text-align: center;
+				margin: -12px 0 -12px 0;
+			}
+			.il-modal-content__card__checkbox input {
+				width: 20px;
+				height: 20px;
+			}
+			.il-modal-content__card__checkbox input:disabled {
+			opacity: 0;
+			}
+			.il-modal-content__card__image {
+				width: 70px;
+				flex-shrink: 0;
+			}
+			.il-modal-content__card__image img {
+				width: 100%;
+				height: auto;
+			}
+			@media (max-width: 768px) {
+				.il-modal-content__actions {
+					flex-direction: column-reverse;
+				}
+				.il-modal-content__action.is-primary {
+					width: 100%;
+					text-align: center;
+					border-radius: 5px;
+				}
+				.il-modal {
+					padding: 15px;
+					align-items: flex-end;
+				}
+				.il-modal-content {
+					width: 100%;
+				}
+				.il-modal-content-inner {
+					padding: 20px;
+					gap: 20px;
+				}
+				.il-modal-fine {
+					font-size: 12px;
+					margin: -8px 0 -8px 0;
+				}
+				.il-modal-close-button {
+					top: -10px!important;
+					right: -10px!important;
+				}
+			}
+			@media (max-width: 768px) {
+				.il-modal-content__card {
+					flex-direction: column;
+					align-items: flex-start;
+					padding: 16px;
+					gap: 14px;
+				}
+				.il-modal-content__card__image {
+					width: 50px;
+					position: absolute;
+					top: -6px;
+					right: -6px;
+					transform: rotate(2deg);
+				}
+			}
+			.il-modal-content__card__text s{
+				text-decoration-thickness: 2px;
+				text-decoration-color: #ef5252;
+			}
+			.il-modal-close-button {
+				position: absolute;
+				top: -16px;
+				right: -16px;
+				background: url('https://abassets.image-line.com/bundling-icons/x.svg');
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: 14px;
+				width: 32px;
+				height: 32px;
+				cursor: pointer;
+				border: 1px solid #c2c2c2;
+				background-color: #fff;
+				border-radius: 50%;
+
+			}
+			.il-modal__fine {
+			font-size: 12px;
+			color: #10111F;
+			opacity: 0.7;
+			max-width: 480px;
+			margin-right: auto;
+			}
+			.il-modal-highlight {
+				color: #FF7629;
+				text-decoration: underline;
+			}
+			.highlighted-price {
+				color: #FF7629;
+			}
+
+
+		`);let p=document.createElement("div");p.id="exp-bundling-modal",p.classList.add("il-modal");let r=[],m=this.getSKUfromURL(e);if(typeof c[m]>"u"||typeof c.FLCLOUD_ANNUAL>"u")return;let h=c[m],w=h.currency,b=this.currencyConfig[w].compactSymbol,k=c.FLCLOUD_ANNUAL.price,g=`${b}${k}`,x=c.FLCLOUD_ANNUAL.real_price,v=`${b}${x}`,H="";x!=null&&(H=`${Math.round((x-k)/x*100)}%`);let V=`${b}${h.price}`,K=`${b}${h.real_price}`,W=h.name.replace("FL Studio","").trim(),L="";if(e.includes("pp=")){let u=new URL(e),_=new URLSearchParams(u.search).get("pp");_&&(L=`&pp=${_}`)}let z=E.getSupportHost("support.image-line.com"),S=`https://${z}/jshop/shop_flcloud2.php?ord=${m}${L}`,f=`https://${z}/jshop/shop_flcloud2.php?ord=${m}:FLCLOUD_ANNUAL${L}`,q={title:"FL Studio",image:"https://abassets.image-line.com/bundling-icons/flstudio.png",quantity:1,checked:!0,disabled:!0,showPriceBefore:!1,priceBefore:K,subtitle:W,priceText:V};h.real_price!=null&&(q.showPriceBefore=!0),r.push(q),this.variantName==="default"&&(r.push({title:"Get over 1 million royalty-free sounds in FL&nbsp;Studio",image:"https://abassets.image-line.com/bundling-icons/flcloud.png",quantity:1,checked:!0,disabled:!1,subtitle:`Try FL Cloud Plus free for three months. Just ${g}/year after your trial. Cancel anytime.`,priceText:"Free&nbsp;trial"}),f=f+"&promo=90FLC79"),this.variantName==="90FLC79"&&(r.push({title:"Get over 1 million royalty-free sounds in FL&nbsp;Studio",image:"https://abassets.image-line.com/bundling-icons/flcloud.png",quantity:1,checked:!0,disabled:!1,subtitle:`Try FL Cloud Plus free for three months. Just ${g}/year after your trial. Cancel anytime.`,priceText:"Free&nbsp;trial"}),f=f+"&promo=90FLC79"),this.variantName==="60FLC79"&&(r.push({title:"Get over 1 million royalty-free sounds in FL&nbsp;Studio",image:"https://abassets.image-line.com/bundling-icons/flcloud.png",quantity:1,checked:!0,disabled:!1,subtitle:`Try FL Cloud Plus free for two months. Just ${g}/year after your trial. Cancel anytime.`,priceText:"Free&nbsp;trial"}),f=f+"&promo=60FLC79"),this.variantName==="30FLC79"&&(r.push({title:"Get over 1 million royalty-free sounds in FL&nbsp;Studio",image:"https://abassets.image-line.com/bundling-icons/flcloud.png",quantity:1,checked:!0,disabled:!1,subtitle:`Try FL Cloud Plus free for one month. Just ${g}/year after your trial. Cancel anytime.`,priceText:"Free&nbsp;trial"}),f=f+"&promo=30FLC79"),this.variantName==="14FLC79"&&(r.push({title:"Get over 1 million royalty-free sounds in FL&nbsp;Studio",image:"https://abassets.image-line.com/bundling-icons/flcloud.png",quantity:1,checked:!0,disabled:!1,subtitle:`Try FL Cloud Plus free for two weeks. Just ${g}/year after your trial. Cancel anytime.`,priceText:"Free&nbsp;trial"}),f=f+"&promo=14FLC79"),this.variantName==="7FLC79"&&(r.push({title:"Get over 1 million royalty-free sounds in FL&nbsp;Studio",image:"https://abassets.image-line.com/bundling-icons/flcloud.png",quantity:1,checked:!0,disabled:!1,subtitle:`Try FL Cloud Plus free for a week. Just ${g}/year after your trial. Cancel anytime.`,priceText:"Free&nbsp;trial"}),f=f+"&promo=7FLC79");let d="";d+=`<div class="il-modal-content"
+			data-default-checkout-url="${S}"
+			data-bundle-checkout-url="${f}"
+		><div class="il-modal-close-button"></div>`,d+=`	<div class="il-modal-header">
+							<div class="il-modal-header__title">
+							<!-- <img src="https://abassets.image-line.com/bundling-icons/present.svg"/> -->
+							Special offer
+							</div>
+						</div>`,d+='	<div class="il-modal-content-inner">',d+='		<div class="il-modal-content__cards">',r.forEach(u=>{let y=u.disabled?"disallow-hover":"allow-hover";d+=`			<div class="il-modal-content__card ${y}">`,typeof u.checked<"u"&&(d+='			<div class="il-modal-content__card__checkbox">',d+='				<div class="il-modal-content__card__checkbox">',d+=`					<input type="checkbox" ${u.disabled?"disabled":""} ${u.checked?"checked":""}>`,d+="				</div>",d+="			</div>"),u.image&&(d+='				<div class="il-modal-content__card__image">',d+=`					<img src="${u.image}">`,d+="				</div>"),d+='				<div class="il-modal-content__card__product">',d+=`					<div class="title">${u.title}</div>`,d+=`					<div class="subtitle">${u.subtitle}</div>`,d+="				</div>",d+='				<div class="il-modal-content__card__text">',u.badge&&(d+=`			<div class="badge">${u.badge}</div>`),u.showPriceBefore?(d+=`					<div style="color: #ef5252;">${u.priceText}</div>`,d+=`					<div><s>${u.priceBefore}</s></div>`):d+=`					<div>${u.priceText}</div>`,d+="				</div>",d+="			</div>"}),d+="		</div>",d+='<div class="il-modal-fine">Taxes may apply. Vouchers can be used during checkout.</div>',d+='		<div class="il-modal-content__divider"></div>',d+='		<div class="il-modal-content__actions">',d+=`			<a data-js-ignore data-track-goal="100464182" href="${S}" class="il-modal-content__action is-primary">Continue to checkout</a>`,d+="		</div>",d+="	</div>",d+="</div>",p.innerHTML=d,i||this.trackDataLayerEvent({event:"flcloudbundle_modal_shown"}),document.body.appendChild(p),p.querySelector(".il-modal-close-button").addEventListener("click",()=>{this.removeModal(p)}),document.addEventListener("keydown",u=>{u.key==="Escape"&&this.removeModal(p)});let C=p.querySelector(".il-modal-content__action.is-primary"),P=p.querySelector(".il-modal-content__card__checkbox input:not([disabled])");P&&C&&(P.checked?C.href=f:C.href=S,P.addEventListener("change",y=>{y.target.checked?C.href=f:C.href=S,n.write("[main-backoffice]","Checkbox changed",y.target.checked)})),p.querySelectorAll(".il-modal-content__card.allow-hover").forEach(u=>{let y=u.querySelector(".il-modal-content__card__checkbox input"),_=p.querySelector(".il-modal-content__action.is-primary");u.addEventListener("click",U=>{U.preventDefault,U.stopPropagation(),U.target.tagName!=="INPUT"&&(y.checked=!y.checked,y.checked?_.href=f:_.href=S)})}),p.querySelectorAll("[data-track-goal]").forEach(u=>{u.addEventListener("click",y=>{y.preventDefault(),y.stopPropagation();let _=y.target.getAttribute("href");this.trackDataLayerEvent({event:"flcloudbundle_modal_button_clicked",href:_},()=>{window.location.href=_})})})}trackDataLayerEvent(e,t){e.pagePath=window.location.pathname,n.write("[main-backoffice]","sending event",e),window.dataLayer=window.dataLayer||[],window.dataLayer.push(e),typeof t=="function"&&(n.write("[main-backoffice]","executing callback"),window.setTimeout(t,200))}removeModal(e){e.remove(),this.trackDataLayerEvent({event:"flcloudbundle_modal_closed"})}applyModifications(){n.write("[main-backoffice]","Applying modifications"),this.updateCheckoutLinks()}refreshModal(){this.lastOriginalHref&&document.getElementById("exp-bundling-modal")&&(n.write("[main-backoffice]","Refreshing modal with updated variant info"),this.injectModal(this.lastOriginalHref))}run(e,t,i,o){n.write("[main-backoffice]","Running bundling modal"),this.variantName=e,this.variantId=t,this.convertVariationID=t,o!==!1&&(this.promoID=o),i&&window.reportAmplitudeVariant("bundling_pricing_250327",this.variantId,20,250),this.applyModifications(),document.getElementById("exp-bundling-modal")&&this.refreshModal()}pricingQueryBuilder(e,t){return`call=product_description_inapp&callback=il_product_description_cb&format=1&product_id=${e.join(";")}&promo=${t}`}async fetchPricingData(e,t){let i=e.join("_")+t,o=this.cache.get(i);if(o)return Promise.resolve(o);try{let a=await this.apiClient.fetchData(()=>this.pricingQueryBuilder(e,t));return this.cache.set(i,a,60),a}catch(a){return n.write("[main-backoffice]","Error fetching pricing data:",a),null}}};window.runBundleModal=async function(){n.write("[main-backoffice]","Running bundle modal");var s=new M;await s.shouldRun()&&s.run("default","default",!1,!1)};var O=class{constructor(){}init(e){this.variant=e,this.isSubdomainSupport=window.location.host.includes("support.image-line.com"),this.isPageSignUp=window.location.pathname.includes("/action/registration/join"),this.isPageSignIn=window.location.pathname.includes("/action/login"),this.isPagePasswordRecovery=window.location.pathname.includes("/action/login/recovery/"),this.isPageNewPasswordForm=window.location.pathname.includes("/action/login/newpassword"),this.isPageRecoveryEmailSent=window.location.pathname.includes("/action/login/send"),this.isPagePasswordRecoveryForm=window.location.pathname.includes("/action/login/recovery"),this.is2FACodePage=document.querySelector("input[name='LoginForm[is_2fa]']"),this.isFLIDPage=this.isPageSignUp||this.isPagePasswordRecovery||this.isPageNewPasswordForm||this.is2FACodePage||this.isPageRecoveryEmailSent||this.isPagePasswordRecoveryForm||this.isPageSignIn,this.hasCheckoutSKUs=!1;let i=new URLSearchParams(window.location.search).get("r");if(i)try{let o=decodeURIComponent(i),c=new URLSearchParams(new URL(o,window.location.origin).search).get("ord");if(c){let l=c.split(":");n.write("Detected SKUs in the 'ord' parameter:",l),l.length>1&&(this.hasCheckoutSKUs=!0,n.write("Detected multiple SKUs in the 'ord' parameter:",l))}}catch(o){n.write("Error: Error parsing redirect parameter:",o)}this.shouldRun()?(n.write("FLIDImprovementsTest","shouldRun"),this.runVariant()):n.write("FLIDImprovementsTest","shouldNotRun")}shouldRun(){if(this.variant=="A")return!1;if(this.isSubdomainSupport&&this.isFLIDPage)return!0}runVariant(){n.write("FLIDImprovementsTest","runVariant",this.variant);let e=[];this.isFLIDPage&&e.push("flid-page"),this.isSubdomainSupport&&e.push("flid-support-subdomain"),this.is2FACodePage&&e.push("flid-2fa-code-page"),this.isPageNewPasswordForm&&e.push("flid-new-password-form"),this.isPageRecoveryEmailSent&&e.push("flid-recovery-email-sent"),this.isPagePasswordRecoveryForm&&e.push("flid-password-recovery-form"),this.isPageSignUp&&e.push("flid-signup-page"),this.isPageSignIn&&e.push("flid-signin-page"),this.isPagePasswordRecovery&&e.push("flid-password-recovery-page"),this.hasCheckoutSKUs&&e.push("flid-is-checkout"),e.length>0&&document.body.classList.add(...e),this.addStyles(),this.addEventListeners()}addStyles(){if(window.injectCSS(`
+			body.flid-page {
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+
+			.form-group input[type='text'],
+			.form-group input[type='email'],
+			.form-group input[type='password'] {
+				font-size: 13.5px;
+				padding: 4px 8px;
+				height: auto;
+				border-width: 1px;
+			}
+
+			.invalid-feedback {
+				min-height: 0 !important;
+				padding: 0 !important;
+				padding: 4px 9px !important;
+				background-color: #f8d7da;
+				color: #721c24 !important;
+				border-radius: 5px;
+				line-height: 1.4em!important;
+				font-size: 12px!important;
+			}
+
+			.invalid-feedback {
+				display: block!important;
+			}
+
+			.invalid-feedback.d-none {
+				display: none!important;
+			}
+
+			.card-title-container {
+				gap: 18px;
+				padding: 10px 0;
+				font-family:
+					Open Sans,
+					sans-serif;
+			}
+
+			.card-title {
+				font-size: 28px;
+				font-stretch: 75%;
+			}
+
+			.card-subtitle {
+				font-size: 13px;
+			}
+
+			.body-content .card {
+				padding: 15px;
+			}
+
+			.g-recaptcha {
+				background-color: rgba(0, 0, 0, 0.04);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 5px 0;
+				border-radius: 3px;
+				filter: grayscale(1);
+			}
+
+			form#registrationForm,
+			form#new-password-form,
+			form#loginForm {
+				display: flex;
+				gap: 7px;
+				flex-direction: column;
+			}
+
+			body.flid-password-recovery-form form#recovery-form {
+				display: flex;
+				flex-direction: column;
+				gap: 25px;
+			}
+
+			.form-group {
+				position: relative;
+			}
+
+			.form-group label {
+				margin: 0 0 5px 0 !important;
+			}
+
+			.verdictLine {
+				display: flex;
+				flex-direction: row;
+				gap: 7px;
+			}
+
+			.kv-meter {
+				position: absolute;
+				top: 0;
+				right: 0;
+				display: flex;
+				gap: 7px;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.kv-verdict {
+				white-space: nowrap;
+				display: none!important;
+			}
+
+			.strengthContainer {
+				height: 8px;
+				display: none!important;
+				width: 30px !important;
+			}
+
+			.tooltipInfo.hovertip_target svg {
+				color: #000 !important;
+			}
+
+			.kv-verdict .label {
+				color: #000;
+				background: transparent !important;
+				padding: 0 !important;
+			}
+
+			.custom-control.custom-checkbox {
+				margin: 0 !important;
+			}
+
+			.invalid-feedback {
+				font: inherit;
+				font-family:
+					Open Sans,
+					sans-serif !important;
+			}
+
+			.sign-in-btn span {
+				font-weight: 600;
+			}
+
+			.fade-toggle {
+				opacity: 0;
+				max-height: 0;
+				overflow: hidden;
+				transition:
+					opacity 0.3s ease,
+					max-height 0.3s ease;
+			}
+
+			.fade-toggle.show {
+				opacity: 1;
+				max-height: 200px; /* should be larger than the height of your fields */
+			}
+
+			/* Hide repeat password field entirely */
+			#signupform-password_repeat {
+				display: none !important;
+			}
+
+			#signupform-password_repeat ~ .invalid-feedback,
+			.field-signupform-password_repeat {
+				display: none !important;
+			}
+
+			.custom-control label {
+				cursor: pointer;
+			}
+
+			.form-control.has-error {
+				margin-bottom: 5px !important;
+			}
+
+			.btn.w-100.is-primary {
+				justify-content: center !important;
+				gap: 5px;
+			}
+
+			.btn.w-100.is-primary span {
+				font-size: 17px;
+			}
+
+			.custom-control-label a {
+				color: inherit;
+				text-decoration: underline;
+			}
+
+			.card.card-subtle {
+				background-color: transparent;
+				box-shadow: none;
+				border-color: rgba(255,255,255,0.2);
+				color: #fff;
+			}
+
+			.card.card-subtle .header-card {
+				align-items: center!important;
+				justify-content: center!important;
+				gap: 7px!important;
+			}
+
+			.card.card-subtle .btn {
+				padding: 0;
+				background-color: transparent!important;
+				color: inherit;
+				text-decoration: underline;
+			}
+
+			symbol#icon-sign-in,
+			symbol#icon-resend-code {
+				fill: #fff;
+			}
+
+			.body-content .card {
+				border-radius: 10px;
+			}
+
+			/* progress bar */
+
+			.signup-progress-bar {
+				display: flex;
+			}
+
+			.progress-steps {
+				display: flex;
+				list-style: none;
+				padding: 0;
+				margin: 0 auto;
+				justify-content: center;
+				font-size: 13px;
+				font-weight: 600;
+				gap: 15px;
+			}
+
+			.progress-steps li {
+				position: relative;
+				text-align: center;
+				flex: 1;
+				color: rgba(14,23,28,.40);
+				white-space: nowrap;
+				display: flex;
+				gap: 7px;
+			}
+
+			.progress-steps li.active {
+				color: #111;
+				font-weight: 600;
+			}
+
+			.step-index {
+				position: relative;
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background-color: rgba(14,23,28,.40);
+				border-radius: 50%;
+				color: #fff;
+			}
+
+			.step-index i {
+				position: absolute;
+				line-height: 1.2em;
+				font-weight: 600;
+				font-size: 12px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-45%, -45%);
+				font-style: normal;
+				font-family: Monospace;
+			}
+
+			.progress-steps li.active .step-index {
+				background-color: rgba(14,23,28,.75);
+				color: white;
+			}
+			.progress-steps li.active .step-label {
+				color: rgba(14,23,28,.75);
+			}
+
+			.step-label {
+				padding: 0;
+				margin: 0;
+			}
+
+			.card .d-flex.flex-row.justify-content-between {
+				margin-bottom: 0px!important;
+			}
+
+			.btn.w-100.is-primary {
+				margin-top: 10px;
+			}
+
+			/* sign-in-footer */
+
+			.sign-in-footer {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 5px;
+				font-size: 13px;
+			}
+
+			.sign-in-footer a {
+				color: #000;
+				text-decoration: underline;
+			}
+
+			.card .alert {
+				padding: 10px;
+				font-size: 13px;
+				border: 0;
+				font-weight: 500;
+				text-align: left;
+			}
+
+			.field-loginform-recaptcha .invalid-feedback {
+				display: none!important;
+			}
+
+			.form-group input[type=text].has-error, .form-group input[type=email].has-error, .form-group input[type=password].has-error {
+				border-color: #dc3545;
+				border-width: 2px;
+			}
+
+			[aria-invalid="false"] {
+				background-image: url('https://abassets.image-line.com/InputCheck.svg')!important;
+				background-size: 13px!important;
+				background-repeat: no-repeat!important;
+				background-position: center right 8px!important;
+			}
+
+			.small-password-generator-btn {
+				font-size: 12px;
+				padding: 0;
+				margin: 0;
+				cursor: pointer;
+				color: #000;
+				display: flex;
+				flex-direction: row;
+				gap: 7px;
+				align-items: center;
+			}
+
+			.small-password-generator-btn img {
+				width: 12px;
+				height: 12px;
+			}
+
+			.verdictLine {
+				display: flex;
+				flex-direction: row;
+				gap: 7px;
+				align-items: center;
+			}
+
+			.tooltipInfo svg {
+				vertical-align: unset;
+			}
+		`),this.variant==="C"){window.injectCSS(`
+				body {
+					background-image: url('https://abassets.image-line.com/BlurredBG.jpg');
+					background-size: cover;
+					background-position: center;
+					background-repeat: no-repeat;
+				}
+			`);let r="https://abassets.image-line.com/FL%20Studio%20Logo%20Light.png";findElements("img.img-fluid","").forEach(m=>{n.write("Setting logo to white"),m.src=r})}let e=findElements(".card","Create an account"),t=findElements('a[href^="/action/login"]',"Sign in");if(t.length&&e.length){findElements(".card.mx-auto","Already have an account?").forEach(m=>{m.remove()});let r=document.createElement("div");r.classList.add("sign-in-footer"),r.innerHTML=`
+				<span>Already have an account?</span>
+				<a href="${t[0].href}">Sign in</a>
+			`,e[0].appendChild(r)}let i=findElements(".card","Keep me signed in"),o=findElements('a[href^="/action/registration/join"]',"Sign up");if(o.length&&i.length){findElements(".card.mx-auto","Don't have an account?").forEach(m=>{m.remove()});let r=document.createElement("div");r.classList.add("sign-in-footer"),r.innerHTML=`
+				<span>Don't have an account yet?</span>
+				<a href="${o[0].href}">Sign up</a>
+			`,i[0].appendChild(r)}findElements("input#recoverypasswordform-email","").forEach(r=>{r.placeholder="Enter your email address"}),findElements("input#loginform-email","").forEach(r=>{r.placeholder="john.doe@gmail.com"}),findElements("input#signupform-email","").forEach(r=>{r.placeholder="john.doe@gmail.com"}),findElements(".card-title","Create an account").forEach(r=>{r.textContent="Create your FL Studio account"}),findElements(".card-title","Sign in").forEach(r=>{r.textContent="Sign in"}),findElements("label","Keep me signed in").forEach(r=>{r.textContent="Remember me"}),findElements("label","E-mail").forEach(r=>{r.textContent="Email"}),findElements("label","Repeat e-mail").forEach(r=>{r.textContent="Repeat email"}),findElements("label","First and last name").forEach(r=>{r.textContent="First and Last Name"}),findElements(".card-subtitle","Nice to meet you!").forEach(r=>{this.hasCheckoutSKUs?r.textContent="Complete your purchase with an FL Studio account":r.textContent="Let's set up your account. It's quick and easy."}),findElements("label","I agree to receive marketing communications").forEach(r=>{r.textContent="Send me discounts, news and personal offers"}),findElements(".card-subtitle","Enter your details").forEach(r=>{r.textContent="Continue with your FL Studio account"});function a(){document.querySelectorAll(".invalid-feedback").forEach(r=>{let m=r.textContent.trim().length>0;r.classList.toggle("d-none",!m)})}new MutationObserver(a).observe(document.body,{childList:!0,subtree:!0}),a();let l="https://abassets.image-line.com/key-skeleton-svgrepo-com.svg";function p(r=18){let m="abcdefghijklmnopqrstuvwxyz",h="ABCDEFGHIJKLMNOPQRSTUVWXYZ",w="0123456789",b="!@#$&-<>?",k=m+h+w+b,g=v=>v[Math.floor(Math.random()*v.length)],x=[g(m),g(h),g(w),g(b)];for(let v=x.length;v<r;v++)x.push(g(k));return x.sort(()=>.5-Math.random()).join("")}if(findElements(".verdictLine","").forEach(r=>{let m=document.createElement("a");m.classList.add("small-password-generator-btn"),m.innerHTML=`
+				Generate password
+			`,m.addEventListener("click",()=>{let h=p();findElements("input#signupform-password","").forEach(w=>{w.value=h,w.type="text",w.dispatchEvent(new Event("input",{bubbles:!0}))})}),this.isPageSignUp&&r.appendChild(m)}),this.isPageSignUp){let x=function(){b.checked?k.classList.add("show"):k.classList.remove("show")},r=document.getElementById("signupform-email"),m=document.getElementById("signupform-confirm_email");if(m&&(m.placeholder="john.doe@gmail.com"),m){let v=m.closest(".form-group");v.classList.add("fade-toggle"),r.addEventListener("input",()=>{r.value.trim().length>0?v.classList.add("show"):v.classList.remove("show"),x()}),m.addEventListener("input",x)}let h=document.getElementById("signupform-password"),w=document.getElementById("signupform-password_repeat"),b=document.getElementById("signupform-terms_accepted"),k=document.querySelector(".field-signupform-recaptcha");k&&k.classList.add("fade-toggle");let g=()=>{w&&(w.value=h.value,x())};h&&(h.addEventListener("input",g),h.addEventListener("change",g)),b&&b.addEventListener("change",x)}}addEventListeners(){}};window.FLIDImprovementsTest=O;var j=class{constructor(){this.apiUrl="/wp-api/banners",this.banners=[],this.activeBanner=null,this.bannerId=null,this.hostUrl=`${window.location.protocol}//${window.location.host}`,(window.location.hostname.endsWith(".image-line.com")||window.location.hostname==="image-line.com")&&(this.hostUrl="https://www.image-line.com",this.apiUrl="https://www.image-line.com/wp-api/banners"),this.init()}async init(){n.write("[PromotionalBanners]","Initializing banner system");try{await this.fetchBanners(),await this.displayBanner()}catch(e){n.write("[PromotionalBanners]","Error initializing banners:",e)}}async fetchBanners(){try{let e=await fetch(this.apiUrl);if(!e.ok)throw new Error(`HTTP error! status: ${e.status}`);this.banners=await e.json(),n.write("[PromotionalBanners]",`Fetched ${this.banners.length} banners`)}catch(e){n.write("[PromotionalBanners]","Failed to fetch banners:",e),this.banners=[]}}async displayBanner(){if(!this.banners.length){n.write("[PromotionalBanners]","No banners to display");return}for(let e of this.banners)if(await this.shouldShowBanner(e)){this.activeBanner=e,this.bannerId=`promo-banner-${e.id}`;break}if(!this.activeBanner){n.write("[PromotionalBanners]","No banners meet display criteria");return}this.injectStyles(),this.createBanner(),n.write("[PromotionalBanners]",`Banner displayed: ${this.activeBanner.title}`)}async shouldShowBanner(e){let t=window.location.pathname,i=window.location.hostname;if(e.allowedDomains&&e.allowedDomains.length>0&&!e.allowedDomains.some(l=>i===l||i.includes(l)))return n.write("[PromotionalBanners]",`Domain not allowed: ${i}`,e.allowedDomains),!1;if(e.excludedPaths&&e.excludedPaths.length>0&&e.excludedPaths.some(l=>l.endsWith("*")?t.startsWith(l.slice(0,-1)):t.includes(l)))return n.write("[PromotionalBanners]",`Path excluded: ${t}`,e.excludedPaths),!1;let a=new Date().toISOString().split("T")[0];return e.startDate&&a<e.startDate?(n.write("[PromotionalBanners]",`Banner not yet active: ${a} < ${e.startDate}`),!1):e.endDate&&a>e.endDate?(n.write("[PromotionalBanners]",`Banner expired: ${a} > ${e.endDate}`),!1):!0}injectStyles(){let e=this.activeBanner,t=`
+            .promo-banner {
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                justify-content: center;
+                align-items: center;
+                background-color: ${e.backgroundColor||"#ee6e1a"};
+                ${e.backgroundImage?`background-image: url("${e.backgroundImage}");`:""}
+                background-size: cover;
+                background-position: center;
+                color: #fff;
+                padding: 0 17px;
+                text-align: left;
+                width: 100%;
+                text-decoration: none;
+                z-index: 1000;
+                position: relative;
+				font-size: 13px;
+				font-stretch: 95%;
+    			font-weight: 400;
+    			max-height: 0;
+    			overflow: hidden;
+    			will-change: max-height, padding;
+    			transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    			           padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .promo-banner.slide-in {
+                max-height: 80px;
+                padding: 17px;
+            }
+            .promo-banner.slide-in .promo-banner-content {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .promo-banner:hover {
+                text-decoration: none;
+                opacity: 0.95;
+            }
+            .promo-banner-content {
+                flex: 1;
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                align-items: center;
+                justify-content: space-between;
+                max-width: 1400px;
+                min-width: 0;
+                opacity: 0;
+                transform: translateY(-10px);
+                will-change: opacity, transform;
+                transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s,
+                           transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s;
+            }
+            .promo-banner-text-group {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                text-align: left;
+                flex: 1;
+                min-width: 0;
+            }
+            .promo-banner-title {
+                display: block;
+                color: #fff;
+                font-weight: 600;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0;
+                line-height: 1.3em;
+				font-size: inherit;
+            }
+            .promo-banner-text {
+                color: #fff;
+                opacity: 0.9;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0;
+                line-height: 1.3em;
+				font-size: inherit;
+            }
+            .promo-banner-cta {
+                display: inline-flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 7px;
+                text-decoration: none;
+                color: ${e.ctaTextColor||"#ffffff"};
+                white-space: nowrap;
+                flex-shrink: 0;
+				font-weight: 600;
+				font-size: inherit;
+            }
+            .promo-banner-close:hover {
+                opacity: 1;
+            }
+            .c-header.is-fixed {
+                top: 0px;
+            }
+            @media (max-width: 768px) {
+                .promo-banner {
+                    gap: 10px;
+                }
+                .promo-banner-content {
+                    flex-direction: row;
+                    gap: 12px;
+                    justify-content: space-between;
+                }
+                .promo-banner-text-group {
+                    text-align: left;
+                    flex: 1;
+                    min-width: 0;
+                }
+            }
+            @media (min-width: 769px) {
+                .promo-banner {
+                    font-size: 15px;
+                }
+                .promo-banner-content {
+                    justify-content: center;
+                    gap: 60px;
+                }
+                .promo-banner-text-group {
+                    flex-direction: row;
+                    gap: 15px;
+                    text-align: center;
+                    align-items: center;
+                    flex: 0 0 auto;
+                }
+                .promo-banner-title {
+                    white-space: nowrap;
+                    margin-right: 0;
+                }
+                .promo-banner-text {
+                    white-space: nowrap;
+                }
+                .promo-banner-cta {
+                    flex: 0 0 auto;
+                }
+            }
+        `;if(window.injectCSS)window.injectCSS(t);else{let i=document.createElement("style");i.textContent=t,document.head.appendChild(i)}}createBanner(){let e=this.activeBanner,t=document.createElement("a");t.href=e.ctaUrl,t.id=this.bannerId,t.className="promo-banner",t.innerHTML=`
+            <div class="promo-banner-content">
+                <div class="promo-banner-text-group">
+                    <div class="promo-banner-title">${e.title}</div>
+                    <div class="promo-banner-text">${e.text}</div>
+                </div>
+                <div class="promo-banner-cta">
+                    ${e.ctaText}
+                    <img width="14" height="14" src="https://abassets.image-line.com/arrow-circled-right-light.svg" alt="Arrow"/>
+                </div>
+            </div>
+        `,document.body.insertBefore(t,document.body.firstChild),t.addEventListener("click",i=>{this.trackBannerClick(e)}),this.handleBannerSlideIn(t),this.trackBannerDisplay(e)}handleBannerSlideIn(e){let t=()=>window.scrollY<=0;if(t())this.slideInBanner(e);else{let i=()=>{t()&&(this.slideInBanner(e),window.removeEventListener("scroll",i))};window.addEventListener("scroll",i,{passive:!0})}}slideInBanner(e){setTimeout(()=>{e.classList.add("slide-in"),setTimeout(()=>{e.style.willChange="auto";let t=e.querySelector(".promo-banner-content");t&&(t.style.willChange="auto")},600)},5)}trackBannerDisplay(e){window.dataLayer&&window.dataLayer.push({event:"promotional_banner_displayed",banner_id:e.id,banner_title:e.title,banner_priority:e.priority}),n.write("[PromotionalBanners]",`Banner tracked: ${e.title} (ID: ${e.id})`)}trackBannerClick(e){window.dataLayer&&window.dataLayer.push({event:"promotional_banner_clicked",banner_id:e.id,banner_title:e.title,banner_description:e.text,banner_cta_text:e.ctaText,banner_cta_url:e.ctaUrl}),n.write("[PromotionalBanners]",`Banner clicked: ${e.title} (ID: ${e.id})`)}async refresh(){if(n.write("[PromotionalBanners]","Refreshing banners"),this.bannerId){let e=document.getElementById(this.bannerId);e&&e.remove()}this.banners=[],this.activeBanner=null,this.bannerId=null,await this.init()}};window.runPageSpeedReporting=function(){if(Math.random()>.05)return;if(n.write("[page-speed]","User sampled for performance reporting"),!window.performance){n.write("[page-speed]","Performance API not supported");return}document.readyState!=="complete"?window.addEventListener("load",function(){setTimeout(e,500)}):setTimeout(e,500);function e(){try{let t=0,i=0;if(typeof window.performance.getEntriesByType=="function"){let o=window.performance.getEntriesByType("navigation");if(o&&o.length>0){let a=o[0];t=Math.round(a.domContentLoadedEventEnd),i=Math.round(a.loadEventEnd),n.write("[page-speed]","Using modern Performance API")}}if(t===0&&window.performance.timing){let o=window.performance.timing;t=o.domContentLoadedEventEnd-o.navigationStart,i=o.loadEventEnd-o.navigationStart,n.write("[page-speed]","Using legacy Performance API")}t>0&&t<6e4&&i>0&&i<6e4?(n.write("[page-speed]",`Metrics - pageReady: ${t}ms, pageLoaded: ${i}ms`),window.dataLayer=window.dataLayer||[],window.dataLayer.push({event:"pagespeed_measured",pageReady:t,pageLoaded:i,url:window.location.href})):n.write("[page-speed]","Invalid timing measurements detected, not reporting")}catch(t){n.write("[page-speed]","Error collecting performance metrics:",t)}}};window.initBOScript=function(){n.write("initBOScript"),new T,new F,runBundleModal(),runPageSpeedReporting(),new $().reportToAmplitude();let e=new j;window.promotionalBanners=e,window.GeolocationDetection=I};document.readyState==="loading"?window.addEventListener("DOMContentLoaded",window.initBOScript):window.initBOScript();})();

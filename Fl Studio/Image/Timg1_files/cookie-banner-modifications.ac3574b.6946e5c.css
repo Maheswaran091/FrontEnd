@@ -1,0 +1,15 @@
+.cookie-consent-banner {max-width: 430px;padding: 25px !important;margin: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);display: flex !important;border-radius: 7px;background-color: #1b2830 !important;gap: 20px;box-shadow: rgba(50,50,93,.25) 0 13px 27px -5px,rgba(0,0,0,.3) 0 8px 16px -8px;border: 0 !important;flex-direction: column !important;}
+.cookie-consent-banner>div:nth-child(1) {padding: 0 !important;display: flex !important;flex-direction: column !important;gap: 10px;}
+.cookie-consent-banner>div:nth-child(1)>div:nth-child(1) {padding: 0 !important;font-size: 18px;font-stretch: 87.5% !important;font-weight: 600 !important;}
+.cookie-consent-banner>div:nth-child(1)>div:nth-child(2) {padding: 0 !important;font-size: 13px;color: #e4eff6;line-height: 1.7em;}
+.cookie-consent-banner .cookie-buttons {display: flex !important;justify-content: flex-start;flex-direction: row-reverse !important;gap: 15px;}
+.cookie-consent-banner .cookie-buttons a#cookie-settings {text-decoration: none;color: #b9c6ce;white-space: nowrap;font-size: 14px;display: block;display: flex;margin: 0;padding: 11px 15px;border-radius: 3.5px;gap: 7px;justify-content: center;background-color: rgba(255,255,255,.05);}
+.cookie-consent-banner .cookie-buttons a#cookie-settings:hover {color: #fff;}
+.cookie-consent-banner button.allow-all {display: block;display: flex;width: 100%;margin: 0;color: #fff;white-space: nowrap;padding: 11px 14px;border-radius: 3.5px;gap: 5px;justify-content: center;font-size: 18px;font-stretch: 87.5% !important;font-weight: 600 !important;}
+.cookie-consent-banner button.allow-all:before {content: "✔";transition: .1s linear;transform: rotate(-10deg) scale(1);}
+.cookie-consent-banner button.allow-all:hover:before {transform: rotate(-5deg) scale(1.15);}
+.cookie-banner-outer {z-index: 10;}
+.cookie-banner-wrapper * {font-family: Open Sans,sans-serif;color: inherit;}
+@media screen and (max-width: 500px) {.cookie-consent-banner {max-width: 100%;inset: auto 15px 15px;transform: none;}
+	.cookie-consent-banner .cookie-buttons {flex-direction: column-reverse !important;}
+	.cookie-consent-banner .cookie-buttons a#cookie-settings {padding: 0;background-color: transparent;}}

@@ -1,0 +1,132 @@
+*{
+        margin: 0;
+        padding: 0;
+    }
+    #container{
+        width: 99vw;
+        height: max-content;
+        background-color: rgb(3, 11, 20);  
+    }
+
+    /* Background video */
+
+    #backimg{
+        width: 99vw;
+        height: 126vh;
+        position: absolute;
+        background-color:rgba(0, 0, 0, 0.8);
+        background-blend-mode: darken;
+    }
+
+    .backvideo{
+        position: absolute;
+        top: 0%;
+        bottom: 0%;
+        right: 1%;
+        left: 0%;
+        z-index: -1;
+        
+        
+    }
+    @media(min-aspect-ratio:15/9){
+        .backvideo{
+            width: 99vw;
+            height: auto;
+            
+        }
+    }
+    @media(max-aspect-ratio:15/9){
+        .backvideo{
+            width: 99vw;
+            height: auto;
+        }
+    }
+
+    /* Navigation bars */
+    #firstnav{
+        width: 99vw;
+        height: 9vh;
+        background-color: rgb(253, 93, 30);
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        color: white;
+        font-family: Open Sans, sans-serif;
+        font-size: 14.5px;
+        cursor: pointer;
+    }
+    #firstnav ul,li{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 40px;
+    }
+    #secondnav{
+        position: absolute;
+        margin-top: 4%;
+        width: 99vw;
+        height: 15vh;
+        background-color: rgb(35, 36, 37);
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+
+
+
+
+    }
+    .left{
+        width: 50vw;
+        height: 9vh;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        text-decoration: none;
+        gap: 10%;
+
+
+    }
+    .left ul,li,a{
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        text-decoration: none;
+        color: #fff;
+
+
+    }
+    .left ul,li,a:hover{
+        color: #a093bd;
+        transition: 0.2s;
+        
+        
+    }   
+    .left ul,li,ul{
+        display: block;
+        position: absolute;
+        background-color: #2a375e;
+        border-radius: 0px 0px 5px 5px;
+        
+
+
+    }
+    .left ul,li,ul,li{
+        line-height: 1;
+        width: 190px;
+        border-radius: 5px;
+        padding: 6px;
+    
+    }
+    .left ul,li,ul,a{
+        padding: 10px 16px;
+        
+
+
+    }
+    .left ul,li,ul,a:hover{
+        background-color: #46527a;
+        
+
+
+    }

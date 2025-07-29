@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Best Music | FL Studio</title>
+    <link rel="icon" href="Logo/Fl Logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        
+    }
+    #container{
+        width: 99vw;
+        height: max-content;
+        background-color: rgb(3, 11, 20);  
+    }
+
+    /* Background video */
+
+    #backimg{
+        width: 99vw;
+        height: 112.1vh;
+        position: absolute;
+        background-color:rgba(0, 0, 0, 0.8);
+        background-blend-mode: darken;
+    }
+
+    .backvideo{
+        position: absolute;
+        top: 0%;
+        bottom: 0%;
+        right: 1%;
+        left: 0%;
+        z-index: -1;
+        
+        
+    }
+    @media(min-aspect-ratio:15/9){
+        .backvideo{
+            width: 99vw;
+            height: auto;
+            
+        }
+    }
+    @media(max-aspect-ratio:15/9){
+        .backvideo{
+            width: 99vw;
+            height: auto;
+        }
+    }
+
+    /* Navigation bars */
+    #firstnav{
+        width: 99vw;
+        height: 9vh;
+        background-color: rgb(253, 93, 30);
+        position: ;
+        display: flex;
+        justify-content: space-around;
+        color: white;
+        font-family: Open Sans, sans-serif;
+        font-size: 14.5px;
+        cursor: pointer;
+        margin-top: %;
+    }
+    #firstnav ul,li{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 40px;
+    }
+    #secondnav{
+        position: absolute;
+        margin-top:;
+        width: 99vw;
+        height: 12vh;
+        background-color: rgb(35, 36, 37);
+        display: flex;
+        justify-content: space-between;
+        
+
+
+
+    }       
+    .logo{
+        width: 200px;       
+        height: 60%;
+        
+        padding: 10px;
+        
+    }
+    .line{
+        width: 2px;       
+        height: 40px;
+        margin-top: 1%;
+        
+        
+    }
+    
+
+    .left{
+        width: 80vw;        
+        
+        
+        font-family: Open Sans, sans-serif;
+        font-size: 15px;
+    }
+    .left ul,li,a{
+        position: relative;
+        text-decoration: none;
+        color: #fff;
+       
+        display: inline-block;       
+        
+        
+    }    
+    .left ul li{    
+        margin-top: 4%;
+        
+    }    
+        
+             
+    .left ul li a:hover{
+        color: #a093bd;
+        transition: 0.2s;
+        
+        
+    }     
+    .left ul li a{
+        display: block;
+        padding: 0px 16px;
+        color: #fff;
+        
+                
+        
+        
+    }            
+    .left ul li ul{
+        display: none;
+        position: absolute;
+        
+        border-radius: 0px 0px 5px 5px;
+        background-color: rgb(35, 36, 37);
+
+
+    }        
+
+    .left ul li:hover ul{
+        display: block;
+        
+        
+
+
+    }    
+    .left ul li ul li{
+        line-height: 1;
+        width: 190px;
+        border-radius: 5px;
+        padding: 6px;
+    
+    }                  
+    .left ul li ul a{
+        padding:10px 16px;
+        
+
+
+    }
+    .left ul li ul a:hover{
+        background-color: #2a375e;
+        
+
+
+    }   
+    .inlist{
+        display: block;
+        }      
+           
+    .button1{
+        width: 80px;       
+        height: 40px;
+        border-radius: 20px;
+        background-color: rgb(35, 36, 37);
+        border-style: none;    
+        cursor: pointer;
+        color: #fff;
+    }
+    .button2{
+        width: 87px;       
+        height: 40px;
+        border-radius: 20px;
+        background-color: rgb(253, 93, 30);
+        border-style: none;    
+        font-size: 17px;
+        cursor: pointer;
+        margin-left: 10%;      
+        color: #fff;
+
+    }    
+
+    .button2:hover{
+        background-color: rgb(230, 70, 6);
+        
+
+
+    } 
+    .right{
+        width: 10%;       
+        margin-top: 1.5%;
+        
+        display: inline-block;
+                       
+        
+                        
+        
+        
+    }    
+    .button3{
+        width: 90px;       
+        height: 40px;
+        border-radius: 20px;
+        background-color: rgb(35, 36, 37);
+        border-style: none;
+        font-size: 17px;
+        cursor: pointer;        
+        color: #fff;
+    } 
+    
+    /* video headletter */
+    .headletter{
+        width: 99vw;
+        height: 50vh;
+        
+        position: relative;
+        margin-top: 15%;
+        text-align: center;
+        font-family: Open Sans, sans-serif;
+    }
+    .headletter1{
+        font-size: 60px;
+        color: #fff;
+        
+    }
+    .headletter2{
+        margin-top: 3%;
+        font-size: 18px;
+        color: darkgray;
+    }
+    .headbutton{
+        
+        width: 13vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: rgb(253, 93, 30);
+        font-size: 20px;
+        cursor: pointer;
+        color: #fff;
+
+    }
+
+    .buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .headbutton,.buttonanchor{
+        margin-top: 3.5%;
+
+    }
+
+    /* content Box */
+    #box{
+        position: relative;
+        width: 99vw;
+        height: 801.7vh;
+        background-color: rgb(3, 11, 20);
+        margin-top: 11.8%;
+        top: 10%;
+    }
+    .box1{
+        width: 90vw;
+        height: 160vh;
+        border-style: solid;
+        margin-left: 4.5%;
+        position: absolute;
+        margin-top: 5%;
+        border-radius: 10px;
+        background-color: rgb(19, 27, 36);
+        border-style: none;
+        background-image: url(Image/block1.png);
+        background-size: 1200px;
+        background-position: 50px;
+        background-position-y: 500px;
+        background-repeat: no-repeat;
+        color: #fff;
+
+
+    }
+    .box1 background-image{
+        width: 20%;
+    }
+    .box1 p{
+        text-align: center;
+        font-family: Open Sans, sans-serif;
+        margin-top: 5%;
+    }
+    .box1h2{
+        bottom: 0%;
+        font-size: 60px;
+    }
+    .box1button{
+        
+        width: 13vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+
+
+    }
+
+    .box1buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .box1button,.box1buttonanchor{
+        margin-top: 3.5%;
+        margin-left: 37%;
+
+
+    }
+
+    /* box2 */
+    .box2{
+        width: 94.5vw;
+        height: 249vh;
+        
+        position: absolute;
+        margin-top: 89%;
+        display: grid;
+        grid-template-columns: 460px 470px;
+        column-gap: 12%;
+        padding-left: 60px;
+        color: #fff;
+        font-family: Open Sans, sans-serif;
+        
+        
+        
+        
+        
+    }
+    .box2d1{
+        width: 43vw;
+        height: 120vh;
+        border-style: none;
+        border-radius: 10px;
+        background-image: url(Image/Block2img1.png);
+        background-repeat: no-repeat;
+        background-color: rgb(87, 87, 87);
+        background-position-y: 325px;
+        
+        
+        
+    }
+    .box2d2{
+        width: 45vw;
+        height: 120vh;
+        border-style: none;
+        border-radius: 10px;
+        background-image: url(Image/Block2img3.png);
+        background-repeat: no-repeat;
+        background-color: rgb(1, 5, 10);
+        background-position-y: 365px;
+        
+    }
+    .box2d3{
+        width: 51.5vw;
+        height: 120vh;
+        border-style: none;
+        border-radius: 10px;
+        background: #333;
+        background-image: linear-gradient(to right,#4b4a44,transparent 2px),linear-gradient(to bottom,#4b4a44,transparent 2px);
+        background-size: 20px 25px;
+        
+        
+    }
+    .box3img{
+        width: 51.5vw;
+        height: 87vh;
+        border-radius: 10px;
+        background-image: url(Image/box3.png);
+        background-repeat: no-repeat;
+        
+        
+        }   
+        
+        
+    .box2d4{
+        width: 37vw;
+        height: 120vh;
+        border-style: none;
+        border-radius: 10px;
+        margin-left: 23%;
+        background-image: url(Image/fl\ Mobile.png);
+        background-repeat: no-repeat;
+        background-color: aqua;
+        background-size: 100%;
+        background-attachment: fixed;
+        
+        
+        
+    }         
+    .flmicon{             
+            width: 25px; 
+            margin-right: 2%;             
+            background-color: aqua;
+            border-radius: 5px;
+       }                     
+                    
+                    
+                    
+            
+       
+    .box2 p{
+        text-align: center;
+        font-family: Open Sans, sans-serif;
+        margin-top: 5%;
+    }
+    .box2create{
+       color: darkgray;
+       font-size: 15px;
+       
+    }
+    .box2h2{
+        bottom: 0%;
+        font-size: 35px;
+    }
+    .box2button{
+        
+        width: 16vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+        
+
+    }
+
+    .box2buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .box2button,.box2buttonanchor{
+        margin-top: 3.5%;
+        margin-left: 10%;
+
+
+    }
+    span{
+        margin-left: 4%;   
+        
+    }    
+    /*Button 2 */        
+    .box22button{
+        width: 16vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+        
+
+    }
+
+    .box22buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .box22button,.box22buttonanchor{
+        margin-top: 3.5%;
+        margin-left: 22%;
+
+    } 
+           
+    /* Button 3 */
+    .box23button{
+        width: 13vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+        
+
+    }
+
+    .box23buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .box23button,.box23buttonanchor{
+        margin-top: 3.5%;
+        margin-left: 30%;
+
+
+    }
+    /* Button 4 */
+    .box24button{
+        width: 9vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+        
+
+    }
+
+    .box24buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .box24button,.box24buttonanchor{
+        margin-top: 3.5%;
+        margin-left: 30%;
+
+
+    }
+    /* Getting  */
+    #Getting{
+        position: absolute;
+        margin-top: 220%;
+        margin-left: 5%;
+        font-family: Open Sans, sans-serif;
+        
+        
+    }    
+    .GP1{        
+       font-size: 50px;        
+               
+               
+    }       
+     .GP2{        
+        color: gray;        
+        margin-top: 4%;       
+               
+    }               
+               
+                
+    /* Tutorial Box  */
+    #tutorial{               
+        width: 88.5vw;           
+        height: 35vh;             
+                        
+        position: absolute;       
+        margin-top: 230%;             
+        display: grid;       
+        grid-template-columns: 20px 20px 20px;             
+        column-gap: 32%;       
+        padding: 65px;   
+    }               
+    .tbox1{               
+        width: 28vw;           
+        height: 40vh;            
+        border-style: none;
+        background-image: url(Image/Timg1.png);
+        background-size: 408px;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+             
+    }          
+    .tbox2{               
+        width: 28vw;           
+        height: 40vh;            
+        border-style: none;
+        background-image: url(Image/Timg2.png);
+        background-size: 408px;
+        background-repeat: no-repeat;
+        border-radius: 10px;    
+    }                 
+    .tbox3{               
+        width: 28vw;           
+        height: 40vh;            
+        border-style: none;
+        background-image: url(Image/Timg3.png);
+        background-size: 408px;
+        background-repeat: no-repeat;
+        border-radius: 10px;;     
+    }           
+                
+    #tutorial2{               
+        width: 88.5vw;           
+        height: 35vh;             
+        font-family: Open Sans, sans-serif;               
+        position: absolute;       
+        margin-top: 251%;             
+        display: grid;       
+        grid-template-columns: 20px 20px 20px;             
+        column-gap: 32%;       
+        padding: 65px;   
+    }               
+    .tbox11{               
+        width: 28vw;           
+        height: 40vh;            
+        border-style: none;     
+    }          
+    .tbox22{               
+        width: 28vw;           
+        height: 40vh;            
+        border-style: none;     
+    }                 
+    .tbox33{               
+        width: 30vw;           
+        height: 40vh;            
+        border-style: none;     
+    }                 
+    .tbox1button{
+        width: 8vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: rgb(3, 11, 20);
+        font-size: 15px;
+        cursor: pointer;
+        margin-right: 34%;
+
+    }
+
+    .tbox1buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .tbox1button,.tbox1buttonanchor{
+        margin-top: 3%;
+        
+
+
+    }           
+    .tbox11 p{                
+        color: gray;       
+                      
+               
+    }                
+    .tbox2button{
+        width: 11vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: rgb(3, 11, 20);
+        font-size: 15px;
+        cursor: pointer;
+        margin-right: 34%;
+
+    }
+
+    .tbox2buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .tbox2button,.tbox2buttonanchor{
+        margin-top: 3%;
+        
+
+
+    }           
+    .tbox22 p{                
+        color: gray;       
+                      
+               
+    }          
+    .tbox3button{
+        width: 8vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: rgb(3, 11, 20);
+        font-size: 15px;
+        cursor: pointer;
+        margin-right: 34%;
+
+    }
+
+    .tbox3buttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .tbox3button,.tbox3buttonanchor{
+        margin-top: 3%;
+        
+
+
+    }           
+    .tbox33 p{                
+        color: gray;       
+                      
+               
+    }  
+    /* Getting  */
+    #thecreative{
+        position: absolute;
+        margin-top: 270%;
+        margin-left: 5%;
+        font-family: Open Sans, sans-serif;
+        font-size: 20px;
+        
+    }    
+    .TCP1{        
+       font-size: 50px;        
+               
+               
+    }       
+     .TCP2{        
+        color: gray;        
+        margin-top: 4%;       
+               
+    }      
+    
+    /* Fl User Box  */
+    #flusers{               
+        width: 88.5vw;           
+        height: 85vh;             
+                      
+        position: absolute;       
+        margin-top: 288%;             
+        display: grid;       
+        grid-template-columns: 20px 20px 20px;             
+        column-gap: 32%;       
+        padding: 65px;   
+    }               
+    .user1{               
+        width: 28vw;           
+        height: 90vh;            
+        border-style: none;
+        background-image: url(Image/user1img.jpg);
+        background-size: 670px;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        background-position-x: -70px;
+        background-position-y: -50px;  
+    }          
+    .user2{               
+        width: 28vw;           
+        height: 90vh;            
+        border-style: none;
+        background-image: url(Image/user2img.png);
+        background-size: 611px;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        background-position-x: -70px;     
+    }                 
+    .user3{               
+        width: 28vw;           
+        height: 90vh;            
+        border-style: none;
+        background-image: url(Image/user3img.jpg);
+        background-size: 611px;
+        background-repeat: no-repeat;
+        border-radius: 10px;;     
+    }
+    .UP1,.UP2,.UP3{     
+        font-family: Open Sans, sans-serif;
+        margin-top: 110%;
+        padding: 20px;
+        
+    
+    }  
+    .UP1{     
+        font-size: 20px;
+        
+    
+    } 
+    .UP2{     
+        font-size: 28px;
+        
+    
+    }
+    .UP21{     
+        font-family: Open Sans, sans-serif;
+        margin-top: 110%;
+        padding: 20px;
+        
+    
+    }
+    .userbutton{
+        width: 15vw;
+        height: 6.5vh;
+        border-radius: 25px;
+        border-style: none;
+        background-color: rgb(3, 11, 20);
+        font-size: 15px;
+        cursor: pointer;
+        margin-right: 34%;
+
+    }
+
+    .userbuttonanchor{
+        display: inline-block;
+        border-radius: 20px;
+        
+        
+    }
+    .userbutton,.userbuttonanchor{
+        margin-top: 3%;
+        margin-left: 4978%;
+        padding: 20px;
+        
+    }
+        
+    /* Get FL Today */
+    #getfltoday{    
+        width: 99vw;    
+        height: 100vh;
+           
+        position: absolute;
+        margin-top: 350%;
+        padding-top: 30px;    
+        text-align: center;
+        border-style: none;
+        background-image: url(Image/todayimg.png);    
+        background-size: 1200px;
+        background-repeat: no-repeat;
+        background-position-x: 70px;
+        background-position-y: 341px;
+    
+    
+    }
+    .fltp1{               
+        font-size: 45px;              
+        color: #fff;         
+                  
+    }           
+    .fltp2{               
+        font-size: 20px;              
+        color: gray;           
+                  
+    }             
+    /* Last navbar */
+    #lastnavebar{  
+        width: 99vw;
+        height: 60vh;
+        background-color: rgb(10, 14, 20);
+        font-family: Open Sans, sans-serif;
+        display: flex;
+        
+    }         
+    .ul1{          
+        margin-left: 5%;
+        grid-template-columns: 10%;               
+        
+    
+    }
+    .bar{       
+        display: flex;
+        width: 99vw;    
+        height: 40vh;
+        padding: 150px;
+        padding-left: 350px;          
+        
+        
+    }
+    li{      
+        font-size: 15px;
+               
+    }          
+    .li1,.li2,.li3,.li4,.li5,.li6,.li7,.li8{      
+        color: gray;
+             
+    }  
+          
+    #download{    
+        background-color: rgb(10, 14, 20);
+        width: 99vw;   
+        height: 30vh;  
+       
+    }  
+    
+                
+    .imageline{                   
+        text-align: center;     
+        font-family: Open Sans, sans-serif;                
+        height: 20vh;                  
+        width: 99;                
+                
+    }              
+                  
+    .ilicon{                   
+        width: 3%;                   
+        mix-blend-mode: multiply;               
+                    
+        }                    
+                  
+    .headbutton:hover{              
+        background-color: rgb(238, 67, 5); 
+                      
+               
+    }         
+               
+           
+</style>
+<body>
+    <div id="container">
+        <div id="backimg"></div>
+        <div id="Video">
+            <video autoplay loop muted plays-inline class="backvideo">
+                <source src="Video/FL STUDIO _Intro.mp4">
+            </video>
+        </div>
+        <a href="https://www.image-line.com/specials/sale?utm_source=website&utm_medium=sitewide_banner&utm_campaign=july_sale_2025"><nav id="firstnav">
+                <ul>
+                    <li style="font-weight: 900px;"><strong>Start faster,finish stronger</strong></li>
+                    <li>Get FL Studio 2025 today</li>
+                    <li><strong>What's new</strong> <i class="bi bi-arrow-right-circle-fill" ></i></li>
+                </ul>
+            </nav></a>
+        <nav id="secondnav">               
+            <a href="https://www.image-line.com/"><img class="logo" src="Logo/fl.png" alt=""></a>    
+            <img class="line" src="Logo/line.png" alt="">
+            <div class="left">
+                
+                <ul>
+                    
+            
+                    <li><a href="">FL Studio</a>
+                         <ul>
+                            <li><a href="https://www.image-line.com/fl-studio">Overview</a></li>	
+                            <li><a href="https://www.image-line.com/fl-studio/compare-editions">Compare Editions</a></li>	
+                            <li><a href="https://www.image-line.com/fl-studio/lifetime-free-updates">Lifetime Free Updates</a></li>	
+                            <li><a href="https://www.image-line.com/artists">Artist (Power Users)</a></li>	
+
+                        </ul>
+	                </li>
+
+                    <li><a href="">FL Cloud</a></li>
+                    <li><a href="">FLEX</a></li> 
+                    <li><a href="">Mobile</a></li>
+                    <li><a href="">Plugins & More</a>
+                        <ul>
+                            <li><a href="https://www.image-line.com/fl-studio/plugins">Plugins</a></li>	
+                            <li><a href="https://www.image-line.com/fl-studio/presets">Presets</a></li>	
+                            <li><a href="https://www.image-line.com/midi-controllers">MIDI Controllers</a></li>	
+
+                        </ul>
+                    </li>
+                    <li><a href="">Help</a>
+                        <ul class="inlist">
+                            <li><a href="">Learn</a></li>	
+                            <li><a href="">Support</a></li>	
+                            <li><a href="">Forums</a></li>	
+                            <li><a href="">News</a></li>	
+                            <li><a href="">Download</a></li>	
+                        </ul>
+                    </li>
+                    <li><a href="">Shop</a></li>
+                    <a href="https://www.image-line.com/lp/3-fl-studio-download"><button class="button1"><strong>Try for free</strong></button></a>
+                    <a href="https://www.image-line.com/fl-studio/buy-now"><button class="button2">Buy now</button></a>             
+                </ul>
+            </div>     
+            <div class="right">         
+                <a href="https://www.image-line.com/fl-studio/buy-now/"><button class="button3">Sign In</button></a>   
+            </div>
+    </div>
+    <div class="headletter">
+        <p class="headletter1">Meet FL Studio, the fastest way <br> from your brain to your speakers</p>
+        <p class="headletter2">We’re Image‑Line, the makers of FL Studio – the music production software used by <br>millions every day to create their best music. Starting at only ₹2,599.</p>
+        <a class="buttonanchor" href="https://www.image-line.com/fl-studio/buy-now/"><button class="headbutton">Buy FL Studio <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+    </div>
+    <div id="box">
+        <div class="box1">
+            <p>FL STUDIO 2025 RELEASE</p>
+            <p class="box1h2">Start faster,<br>finish stronger</p>
+            <a class="box1buttonanchor" href="https://www.image-line.com/release/"><button class="box1button">What's new <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+        </div>
+        <div class="box2">
+            <div class="box2d1">
+                <p>FL STUDIO</p>
+                <p class="box2h2">The flagship studio <br>for modern producers</p>
+                <p class="box2create">Create music with over 100 world-famous plugins, intuitive <br> workflows, and Lifetime Free Updates. Starting at only ₹2,599</p>
+                <a class="box2buttonanchor" href="https://www.image-line.com/fl-studio/"><button class="box2button">Discover FL Studio <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+                <span></span>
+                <span>Available for  <i class="bi bi-windows"></i>   and   <i class="bi bi-apple"></i></span>
+                    
+            </div>
+            <div class="box2d2">
+                <p>FL CLOUD</p>
+                <p class="box2h2">Over a million sounds to <br> inspire your next track</p>
+                <p class="box2create">Access a huge library of royalty-free samples, plugged right into <br> FL Studio. Turn your ideas into fire tracks, fast.</p>
+                <a class="box22buttonanchor" href="https://www.image-line.com/fl-cloud/"><button class="box22button">Discover FL Cloud <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+
+            </div>
+            <div class="box2d3">
+                <p></p>
+                <p class="box2h2">FLEX</p>
+                <p class="box2create">FLEX is a fast, lightweight, free plugin in FL Studio loaded with <br> presets that sound pro from the moment they load.</p>
+                <a class="box23buttonanchor" href="https://www.image-line.com/flex"><button class="box23button">Discover FLEX <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+                <div class="box3img">
+                    
+                </div> 
+        
+        
+            </div>
+            <div class="box2d4">
+                <p class="flmobh"><img class="flmicon" src="Image/fl Mobileicon.png" alt="">FL Studio Mobile</p>
+                <p class="box2h2">Pocket-sized. Fun.</p>
+                <p class="box2create">FL Studio Mobile sounds just like its bigger brother,<br> but goes wherever you go.</p>
+                <a class="box24buttonanchor" href="https://www.image-line.com/fl-studio-mobile/"><button class="box24button">Go Mobile <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+                <p>Available for  <i class="bi bi-android2"></i>   and   <i class="bi bi-apple"></i></p>
+            </div>    
+    
+        
+    
+    
+        </div>
+        <div id="Getting">
+            <p class="GP1">Getting started</p>
+            <p class="GP2">Dive into music production with FL Studio.</p>
+        </div>  
+        <div id="tutorial">        
+               <div class="tbox1">               
+                    
+               </div>
+               <div class="tbox2">               
+               
+               </div>
+               <div class="tbox3">               
+               
+               </div>
+        </div>
+        <div id="tutorial2">        
+               <div class="tbox11">               
+                    <h3>Complete Beginners Tutorial</h3> <br>
+                    <p>Made by YouTube creator ‘In The Mix’, the FL Studio Basics Playlist helps those who are completely new to FL Studio and are looking for a place to start.</p>
+                    <a class="tbox1buttonanchor" href="https://www.youtube.com/playlist?list=PLx5i827-FDqPiLPjGxlUv3gjq7uCEVVfl" target="_blank"><button class="tbox1button">Open playlist <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+
+               </div>
+               <div class="tbox22">               
+                    <h3>Making a Lofi Beat</h3> <br>
+                    <p>See how the workflow features added since FL Studio 20.1 can help you make a Lofi Hip hop style beat.</p>
+                    <a class="tbox2buttonanchor" href="https://www.youtube.com/watch?v=ort7ZLY-3zo" target="_blank"><button class="tbox2button">Watch on Youtube <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+
+               </div>
+               <div class="tbox33">               
+                    <h3>Reference Manual</h3> <br>
+                    <p>The Reference Manual truly contains everything there is to know about FL Studio from installation to release.</p>
+                    <a class="tbox3buttonanchor" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/title.htm" target="_blank"><button class="tbox3button">Open manual <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+
+               </div>
+        </div>    
+        <div id="thecreative">
+            <p class="TCP1">The creative force behind <br> the world’s top hits</p>
+            <p class="TCP2">FL Studio has been the birthplace of countless hits, revered and relied upon by artists <br> worldwide. Over the last 25 years it has become a powerhouse that fuelled chart-topping <br> singles and groundbreaking albums.</p>
+        </div>
+        <div id="flusers">
+            <div class="user1">
+                <p class="UP1">“FL Studio means everything to my productions. It’s the only program I didn’t get bored of.”</p>
+                <span class="UP2">WondaGurl</span>
+                <span class="UP3">uses FL Studio</span>
+            </div>
+            <div class="user2">
+                <p class="UP21">“The truth is, I’ve made most of my best beats on the couch, because FL Studio has everything I need and such versatility — I produce wherever I feel most comfortable.”</p>
+                <span class="UP2">6IX</span>
+                <span class="UP3">uses FL Studio</span>
+    
+            </div>
+            <div class="user3">
+                <p class="UP1">Hit-Boy always lives up to his name. He has been a Grammy winner or nominee for 10 of the last 11 years.</p>
+                <span class="UP2">HIT-BOY</span>
+                <span class="UP3">uses FL Studio</span>
+                
+                
+            </div>
+            <a class="userbuttonanchor" href="https://www.image-line.com/artists/"><button class="userbutton">Explore Power Users <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+    
+        </div>
+        <div id="getfltoday">    
+            <p class="fltp1">Get FL Studio today</p><br>
+            <p class="fltp2">Get FL Studio with Lifetime Free Updates, exclusive pro instruments and effects and <br> industry-leading features like Stem Separation. Editions start at only ₹2,599.</p>    
+            <a class="tbox3buttonanchor" href="https://www.image-line.com/lp/3-fl-studio-download"><button class="tbox3button">Get the Trail</button></a>
+            <a class="buttonanchor" href="https://www.image-line.com/fl-studio/"><button class="headbutton">Buy FL Studio <i class="bi bi-arrow-right-circle-fill"></i></button></a>
+        </div>
+    
+    
+        
+    
+    
+    
+    
+    </div>  
+    <div id="lastnavebar">        
+        <div class="bar">
+            <ul class="ul1">         
+                <h3>Product</h3><br><br>
+                <li class="l1"><a href="">FL STUDIO</a></li><br>	
+                <li class="l2"><a href="">FL CLOUD</a></li><br>	
+                <li class="l3"><a href="">FL Studio Mobile</a></li><br>	
+                <li class="l4"><a href="">Plugins</a></li><br>	
+                <li class="l5"><a href="">MIDI Controller</a></li><br>	
+                <li class="l6"><a href="">Merchandising</a></li> <br>   
+            </ul>      
+            <ul class="ul1">         
+                <h3>Company</h3><br><br>
+                <li class="l1"><a href="">News</a></li><br>
+                <li class="l2"><a href="">Press</a></li><br>	
+                <li class="l3"><a href="">Jobs</a></li><br>	
+                <li class="l4"><a href="">Report Piracy</a></li><br>	
+                <li class="l5"><a href="">Legal Notices</a></li><br>	
+                <li class="l6"><a href="">Terms of Use</a></li><br>              
+                <li class="l7"><a href="">Contact</a></li><br>	
+                <li class="l8"><a href="">Eugene Kryukov</a></li><br>       
+            </ul> 
+            <ul class="ul1">         
+                <h3>Help</h3><br><br>
+                <li class="l1"><a href="">Support & FAQ</a></li><br>	
+                <li class="l2"><a href="">Learning</a></li><br>	
+                <li class="l3"><a href="">Forum</a></li><br>	
+                <li class="l4"><a href="">Download</a></li><br>	
+                <li class="l5"><a href="">Redeem Product</a></li><br>	   
+            </ul>        
+            <ul class="ul1">         
+                <h3>Socials</h3><br><br>
+                <li class="l1"><a href="">Facebook</a></li><br>	
+                <li class="l2"><a href="">X(Twitter)</a></li><br>	
+                <li class="l3"><a href="">YouTube</a></li><br>	
+                <li class="l4"><a href="">Instagram</a></li><br>		   
+            </ul>         
+        </div>       
+                 
+         
+       
+        
+    
+    </div>
+    <div id="download">   
+        <div class="imageline">    
+            <img class="ilicon" src="Logo/illogo2.jpg" alt="">
+            <p>FL Studio is built by Image‑Line in Belgium</p>    
+            <a href=""><p>Download it for free today</p></a>
+        </div>
+    
+       
+      
+    
+    </div>
+      
+    
+    
+    
+</body>
+</html>
