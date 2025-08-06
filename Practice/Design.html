@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nextconf-Weflow HTML Website Template</title>        
 
-    <link rel="icon" href="d&w.png">
+    <link rel="icon" id="hicon" href="d&w.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <style>
@@ -15,7 +15,13 @@
 
         background-color: black;
     }
-
+    #hicon{
+        color: blue;
+        background-color: yellow;
+   }
+   
+   
+   
    
     #main{
         width: 100vw;
@@ -28,12 +34,16 @@
     } 
     #left{               
         width: 30vw;
-        height: 100vh;       
+        height: 200vh;       
         background-color: qua;
         margin-left: 1%;
         padding: 15px;
         padding-left: 20px;
         position: sticky;
+        
+    
+        
+
     }
 
     /* About Box */
@@ -50,9 +60,41 @@
         color: #fff;
         font-weight: bolder;
         border-style: none;
+        animation-name: navbar;         
         
+        animation-fill-mode: forwards;
+        animation-duration: 0.5s;        
+        animation-iteration-count: infinit;
+       
+    }        
+    @keyframes navbar{    
+        0%{    
+            transform: rotate(-40deg);
+           
+        
+       }
+           
+        
+       
+        100%{        
+            transform: rotate(0deg);
+                
+        
+      
+        }       
+        
+        
+         
+    }   
+       
+         
+    .leftfirstbox:hover{    
+        
+        
+        
+         
+          
     }
-    
       
     .ul1 li{
         list-style: none;
@@ -107,18 +149,79 @@
             
         font-size: 30px;
         margin-left: 20%;
+        animation-name: Barrow;         
         
+        animation-fill-mode: forwrds;
+        animation-duration: 3;        
+        animation-iteration-count: 2;
+
+
+
     }
-    .bi-arrow-up-right:hover{
+     @keyframes Barrow{
+        100%{        
+            transform: rotate(30deg);
+                
+        
+      
+        }       
+        
+        
+         
+    }
+
+    #leftsecondbox{
+        width: 29vw;
+        height: 66vh;
+        background-color: rgb(46, 46, 245);
+        margin-left: 7%;
+        padding-top: 1px;
+        border-radius: 20px;
+    
+        font-size: 28px;
+        list-style-type: none;
+        color: #fff;
+        font-weight: bolder;
+        border-style: none;
+        margin-top: 4%;
+        background-image: url(img1.png);
+        background-repeat: no-repeat;
+        background-size: 400px;
+        display: flex;
+
+        
+    }   
+    .button2{
+        width: 29vw;           
+        height: 10vh;
+        font-size: 22px;
+        background-color: rgb(46, 46, 245);
+        border-style: none;
+        cursor: pointer;
+        color: black;
+        font-family: sans-serif;
+        font-weight: 900;
            
-        transform: rotate(90deg);
-        transition: 2s ease-in-out
                
         
+    }         
+          
+    .buttonbox{  
+        width: 22vw;      
+        height: 10vh;
+        background-color: black;
+        margin-top: 80%;        
+        
     }
-           
-    
-                
+    .barrow{          
+        margin-top: 85%;
+        cursor: pointer;        
+              
+               
+                  
+    }         
+               
+                   
     
                 
     
@@ -135,7 +238,7 @@
       
     .rightfirstbox{
         width: 47vw;
-        height:110vh;
+        height:80vh;
         background-color:rgb(35, 255, 35);
         border-radius: 20px;
         margin-left: 2%;
@@ -151,17 +254,45 @@
         font-size: 30px;
 
         margin-top: -1%;
+        background-color: bluviolet;
+        margin-top: -2%;
     }
     .p2{
-        font-size: 70px;
+        font-size: 90px;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        border-bottom: 10%;
+        text-align: justify;
+        background-color: volet;
+        margin-top: -4%;
 
     }
     .p3{
         font-size: 22px;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        margin-top: -8%;
+    }
+    /* Right Down Box */
+    .rdbox{
+        background-color: aqua; 
+        width: 62vw;
+        height: 30vh;
+        margin-left: 2%;
+        margin-bottom: 1%;
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px 20px 20px;
 
     }
+    .rdbox11{
+        background-color: aquamarine;
+        column-gap: 30px;
+        text-align: center;
+
+    }
+
+
+
 
 
 
@@ -194,7 +325,13 @@
                 </ul>
 
             </div>
-
+            <div id="leftsecondbox">
+                <div class="buttonbox"><a href=""><button class="button2" style="border-bottom: none;">SEE FULL <br> SCHEDULE </button></i></b></a></div>
+                <div class="barrow"><i class="bi bi-arrow-up-right"></i></div>
+        
+        
+        
+            </div>
 
         </div>               
 
@@ -203,7 +340,7 @@
                 
             <div class="rightfirstbox">
                 <p class="p1">WELCOME TO NEXTCONF</p>
-                <h1 class="p2">Unlock <br> Possibility <br> with No <br> Code</h1>
+                <h1 class="p2">UNLOCK <br> POSSIBILITY <br> WITH NO <br> CODE</h1>
                 <p class="p3">a local hub for creators, entrepreneurs, and curious minds to <br> explore, build, and grow without writing a single line of code.</p>
 
 
@@ -211,6 +348,14 @@
 
 
             </div>
+
+            <div class="rdbox">
+                <div class="rdbox11">ekdwe</div>
+                <div class="rdbox11">dewd</div>
+                <div class="rdbox11">wedewd</div>
+            </div>
+
+
         </div>
 
 

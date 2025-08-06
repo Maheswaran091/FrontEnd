@@ -374,16 +374,20 @@ console.log("Grater then Equal :",null<=undefined)
 console.log("Dobule Equal :",null==undefined)                                         
 console.log("Not Equal :",null!=undefined)                 
                        
+             
+//Logical Operator -> AND-&&   OR-|| 
+console.log("//Logical Operator -> AND-&&   OR-|| ")
+console.log("//-----AND ->&& Operator-----//")               
+console.log("Grater & Grater than :",10>5 && 2>7);                            
+console.log("lesser & lesser than :",1<4 && 4<6);                 
+console.log("Grater & lesser than :",12>3 && 1<6);                   
+console.log("lesser & Grater than :",13<4 && 6>4);                           
               
-//Logical Operator -> AND-&&   OR-||                
-console.log()                            
-              
-                
-                        
-              
-                
-                             
-              
+console.log("//-----OR -> || Operator-----//")                 
+console.log("Grater & Grater than :",2>5 || 6>4);                            
+console.log("lesser & lesser than :",4<2 || 3<7);                 
+console.log("Grater & lesser than :",6>8 || 2<7);                   
+console.log("lesser & Grater than :",6<2 || 4>6);             
                 
                         
               
