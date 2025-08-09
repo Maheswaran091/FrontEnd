@@ -31,7 +31,11 @@ for(i=1;i<=row1;i++){
 
 console.log(star1)
 
+<<<<<<< HEAD
 // Lower Right Pattern
+=======
+// Lower Left Pattern 
+>>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 console.log("----Lower Right Pattern----")
 let row3=5;
 let cols3=1;
@@ -73,7 +77,11 @@ for(i=1;i<=row4;i++){
 console.log(star4)
 
 
+<<<<<<< HEAD
 // Pyramid Upper Pattern 
+=======
+// Pyramid Pattern 
+>>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 console.log("----Pyramid Upper Pattern----")
 let row5=5;
 
@@ -204,8 +212,13 @@ for(i=1;i<=row10;i++){
 }
 console.log(result10)
 
+<<<<<<< HEAD
 // Pyramid Pattern Number
 console.log("----Pyramid Pattern Star : 4----")
+=======
+//Pyramid Patter Number start : 9
+console.log("----Pyramid Pattern Number : 4----")
+>>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 let row11=9;
 let result11=""
 let space11=row11*1-1
@@ -225,7 +238,11 @@ for(i=1;i<=row11;i++){
 }
 console.log(result11)
 
+<<<<<<< HEAD
 // Pyramid Pattern Number 9 to 1
+=======
+//Pyramid Patter Number start : 1
+>>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 console.log("----Pyramid Pattern Number : 5----")
 let row12=9;
 let result12=""
@@ -246,7 +263,11 @@ for(i=row12;i>=1;i--){
 }
 console.log(result12)
 
+<<<<<<< HEAD
 // Pyramid Pattern Down
+=======
+// Pyramid Pattern Down Star
+>>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 console.log("----Pyramid Pattern Star:6----")
 let row13=9;
 let cols13=1;
