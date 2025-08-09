@@ -31,7 +31,7 @@ for(i=1;i<=row1;i++){
 
 console.log(star1)
 
-// Upper Left Pattern 
+// Lower Left Pattern 
 console.log("----Lower Right Pattern----")
 let row3=5;
 let cols3=1;
@@ -53,7 +53,7 @@ for(i=1;i<=row3;i++){
 console.log(star3)
 
 
-// Upper Left Pattern 
+// Upper Right Pattern 
 console.log("----Upper Right Pattern----")
 let row4=7;
 let cols4=1;
@@ -73,7 +73,7 @@ for(i=1;i<=row4;i++){
 console.log(star4)
 
 
-// Upper Left Pattern 
+// Pyramid Pattern 
 console.log("----Pyramid Upper Pattern----")
 let row5=5;
 
@@ -186,7 +186,7 @@ for(i=1;i<=row9;i++){
 }
 console.log(result9)
 
-// Pyramid Pattern Star
+// Pyramid Pattern Up Star
 console.log("----Pyramid Pattern Star : 3----")
 let row10=9;
 let cols10=1;
@@ -203,7 +203,8 @@ for(i=1;i<=row10;i++){
 }
 console.log(result10)
 
-console.log("----Pyramid Pattern Star : 4----")
+//Pyramid Patter Number start : 9
+console.log("----Pyramid Pattern Number : 4----")
 let row11=9;
 let result11=""
 let space11=row11*1-1
@@ -223,8 +224,8 @@ for(i=1;i<=row11;i++){
 }
 console.log(result11)
 
-
-console.log("----Pyramid Pattern Star : 5----")
+//Pyramid Patter Number start : 1
+console.log("----Pyramid Pattern Number : 5----")
 let row12=9;
 let result12=""
 let space12=row12*1-1
@@ -244,8 +245,8 @@ for(i=row12;i>=1;i--){
 }
 console.log(result12)
 
-// Pyramid Pattern Down
-console.log("----Pyramid Pattern Number:6----")
+// Pyramid Pattern Down Star
+console.log("----Pyramid Pattern Star:6----")
 let row13=9;
 let cols13=1;
 let result13=""
