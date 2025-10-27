@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <input type="text" onchange="changeText(this)">
+    <button onclick="callApi()">Get Transaction</button>
+    <p id="load" style="display: none;">Loading .....</p>
+    <p id="jq"></p>
+    <p id="copy"></p>
+    <button>Next</button>
+
+    <input type="text" name="username" placeholder="Enter your name" onchange="change(this)">
+    <input type="password" name="password" placeholder="Enter your password" onchange="change(this)">
+    <button onclick="login()">Login</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(()=>{
+            $("#jq").text("Hi this jquery");
+            $("#copy").text($("#jq").text())
+            $("#copy").hide()
+        })
+        
+    </script>
+</body>
+</html>

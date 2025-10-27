@@ -31,11 +31,8 @@ for(i=1;i<=row1;i++){
 
 console.log(star1)
 
-<<<<<<< HEAD
+
 // Lower Right Pattern
-=======
-// Lower Left Pattern 
->>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 console.log("----Lower Right Pattern----")
 let row3=5;
 let cols3=1;
@@ -50,20 +47,15 @@ for(i=1;i<=row3;i++){
     }
     star3+='\n'
     cols3+=2
-    space-=2
-    
+    space-=2   
 }
-
 console.log(star3)
-
-
 // Upper Right Pattern 
 console.log("----Upper Right Pattern----")
 let row4=7;
 let cols4=1;
 let space4=row4*2-2;
 let star4=""
-
 for(i=1;i<=row4;i++){
     for(j=1;j<=cols4;j++){
         star4+=" "
@@ -77,11 +69,7 @@ for(i=1;i<=row4;i++){
 console.log(star4)
 
 
-<<<<<<< HEAD
 // Pyramid Upper Pattern 
-=======
-// Pyramid Pattern 
->>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 console.log("----Pyramid Upper Pattern----")
 let row5=5;
 
@@ -92,14 +80,10 @@ for(i=row5;i>=0;i--){
     for(j=1;j<=i;j++){
         star5+="  "
     }
-    
     for(k=space5;k<=9;k++){
          star5+="* "
      }
-    
-    star5+="\n";
-    
-    
+    star5+="\n"; 
 }
 console.log(star5)
 
@@ -125,8 +109,8 @@ let num=1;
 
 console.log(star6)
 
-// Pyramid Upper and Lower Pattern
-console.log("----Pyramid Upper and Lower Pattern----")
+// Pyramid Diamonds Pattern
+console.log("----Pyramid Diamonds Pattern----")
 let row7=5;
 
 let star7="";
@@ -212,13 +196,10 @@ for(i=1;i<=row10;i++){
 }
 console.log(result10)
 
-<<<<<<< HEAD
-// Pyramid Pattern Number
-console.log("----Pyramid Pattern Star : 4----")
-=======
+
 //Pyramid Patter Number start : 9
 console.log("----Pyramid Pattern Number : 4----")
->>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
+
 let row11=9;
 let result11=""
 let space11=row11*1-1
@@ -238,11 +219,8 @@ for(i=1;i<=row11;i++){
 }
 console.log(result11)
 
-<<<<<<< HEAD
-// Pyramid Pattern Number 9 to 1
-=======
+
 //Pyramid Patter Number start : 1
->>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 console.log("----Pyramid Pattern Number : 5----")
 let row12=9;
 let result12=""
@@ -262,12 +240,7 @@ for(i=row12;i>=1;i--){
     space12-=1
 }
 console.log(result12)
-
-<<<<<<< HEAD
-// Pyramid Pattern Down
-=======
 // Pyramid Pattern Down Star
->>>>>>> 89c2a433e0d77fd88b3a7257c59e415d994af792
 console.log("----Pyramid Pattern Star:6----")
 let row13=9;
 let cols13=1;

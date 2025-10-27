@@ -1,6 +1,6 @@
 // Variable 
 // Local Global Block
-// primitive data types
+// primitive data types => It is a Singular value
 // Number String Boolean Symbol Null Undefined
 
 var varNumber=10                //Variable declered

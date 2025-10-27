@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+</style>
+<body>
+    <div id="d1"></div>
+    <p class="p1"></p>
+    <p class="p1"></p>
+    <p class="p1"></p>
+    
+    <script>
+        // document.getElementsByClassName("p1").innerHTML="<h1>Hello World!</h1>";
+        // document.getElementsByClassName("p1").textContent;
+        // document.getElementById("p2").innerHTML=document.getElementsByClassName("p1").textContent;
+        
+        // get the  Div element
+        let para=document.createElement("p");
+        para.innerHTML="Heading Tag"
+        document.getElementById("d1").append(para)
+        for(i=0;i<=para.length;i++){
+                
+        }
+    
+        // document.getElementById('d1').remove() // remove the div element
+
+    </script>
+</body>
+</html>

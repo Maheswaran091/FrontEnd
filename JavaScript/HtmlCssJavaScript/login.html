@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #log{
+        width: 400px;
+        margin: 20vh auto 0 auto;
+        background-color: blue;
+        border-radius: 5px;
+        padding: 30px;
+        
+    }
+    #inputgroup{
+        display: flex;
+        flex-direction: column;
+        color: aliceblue;
+    }
+    h1{
+        text-align: center;
+    }
+
+</style>
+<body>
+    <div id="container">
+        <div id="log">
+            <h1>Register</h1>
+            <div id="inputgroup">
+                <label for="username">UserName</label>
+                <input type="text" onchange="openText1(this)" placeholder="UserName" id="name">
+                <span id="errorname"></span>
+            </div>
+            <div id="inputgroup">
+                <label for="Gmail">Gmail</label>
+                <input type="text" onchange="openText1(this)" placeholder="Enter mail" id="mail">
+                <span id="errormail"></span>
+            </div>
+            <div id="inputgroup">
+                <label for="username">Password</label>
+                <input type="password" onchange="openText1(this)" placeholder="Password" id="pass">
+                <span id="errorpass"></span>
+            </div>
+            <button type="submit" id="b1" onclick="subbutton()">Submit</button>
+        </div>
+    </div>
+    <script>
+        function subbutton(){
+            var name = document.getElementById("name").value 
+            var errorname=document.getElementById("errorname")
+            var mail= document.getElementById("mail").value 
+            var errormail=document.getElementById("errormail")
+            var pass = document.getElementById("pass").value 
+            var errorpass=document.getElementById("errorpass")
+            if(name===""){
+                document.getElementById("errorname").innerText="This is Mendatory"
+            
+            }
+            
+            else if(mail===""){
+                document.getElementById("errormail").innerText="This is Mendatory"
+            }
+            else if(pass===""){
+                document.getElementById("errorpass").innerText="This is Mendatory"
+            }
+       
+            // function openText1(e){
+            //     if(name=value){
+            //         document.getElementById("errorname").style.display="none"
+            //     }
+            //     else if(mail===value){
+            //         document.getElementById("errormail").innerText="This is Mendatory"
+            //     }
+            //     else if(pass===value){
+            //         document.getElementById("errorpass").innerText="This is Mendatory"
+            //     }
+            // }
+        
+            
+            
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        margin: 0%;
+        padding: 0%;
+    } 
+    #b1{
+        margin-left: 40%;
+        margin-top: 10%;
+    }
+    #p1{
+        /* margin-left: 20%; */
+        margin-top: 10%;
+        text-align: center;
+        font-size: 30px;
+        
+    }
+    input{
+        margin-left: 15%;
+        margin-top: ;
+    }
+    
+    #d1{
+        width: 20vw;
+        height: 20vh;
+        margin-top: 20%;
+        margin-left: 40%;
+        
+    }
+</style>
+<body>
+    <div id="d1">
+        <p id="p1">Hello !</p>
+        <input onchange="openText(this)" type="text">
+        <button disabled id="b1" onclick="Click1()">Search</button>
+        
+        
+    </div>
+    
+
+    <script>
+        
+        let tf=true
+        // Input
+        function openText(e){
+            document.getElementById("p1").innerText=e.value
+            let InputValue=e.value
+            if(InputValue.length>5){
+                document.getElementById("b1").disabled=false
+            }else{
+                document.getElementById("b1").disabled=true
+            }
+        }
+        // Button
+        function Click1(){
+            
+            tf=!tf
+            if(tf){
+                for(i=0;i<5;i++){
+                    
+                    document.getElementById("d1").append(document.getElementById("p1").innerText)
+                }
+                document.getElementById("p1").style.display="block"
+                document.getElementById("b1").innerHTML="Hide"
+                document.getElementById("p1").style.color="blue"
+                document.body.style.backgroundColor="white"
+                document.getElementById("d1").style.backgroundColor="white"
+
+            }
+            else{
+                document.getElementById("p1").style.display="none"
+                document.getElementById("b1").innerHTML="Show"
+                document.getElementById("p1").style.color="white"
+                document.body.style.backgroundColor="black"
+                document.getElementById("d1").style.backgroundColor="blue"
+                document.getElementById("b1").style.backgroundColor="red"
+                for(i=0;i<5;i++){
+                    document.getElementById("d1").append(document.getElementById("p1").innerText)
+
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>

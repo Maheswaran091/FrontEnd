@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .create1{
+        background-color: yellow;
+    }
+    #cr{
+        background-color: brown;
+    }
+</style>
+<body>
+    <!-- <h2 id="cr1"></h2> -->
+    <div id="d1"></div>
+    <div id="d2"></div>
+    <p class="p1">one</p>
+    <p class="p1">Two</p>
+    <p class="p1">Three</p>
+    <p class="p1">one</p>
+    <p class="p1">Two</p>
+    <p class="p1">Three</p>
+    <script>
+    // Create
+       let create=document.createElement("h1")
+       create.innerHTML="Create"
+       create.style.color="blue"
+    //    create.className="create1"
+       create.id="cr"
+       div=document.getElementById("d1")
+       div.append(create)
+    // Read
+        let ct=document.createElement("h2") //create
+        ct.id="cr2"
+        console.log(document.getElementById("cr").textContent) //read
+    // Update
+        ct.innerHTML=document.getElementById("cr").textContent // Update
+        
+        div.append(ct) //Updated will Show
+    // Delete
+        ct.remove()  // Delete
+         
+        
+        
+    for(i=0;i<10;i++){
+        let para=document.createElement("p")
+        para.innerHTML="Graph"
+        div.append(para)
+    }   
+    
+    let copy=document.getElementsByClassName("p1")
+    for(i=0;i<copy.length;i++){
+        div.append(copy[i].innerHTML)
+    }
+    
+    </script>
+</body>
+</html>

@@ -5,45 +5,34 @@
 // ------------CONTDITIONAL AND ITERATIVE----------
 if(2>7){
     console.log("This condition is True...")
-
-
 }
 else{
     console.log("This condition is False...")
-
 }
-
-
 
 //null
 if(null){
     console.log("Null : True")
-
 }
 else{
 console.log("Null : False")
-
 }
-
 //Undefined
 if(undefined){
     console.log("undefined : True")
-
 }
 else{
 console.log("undefined : False")
-
 }
 
 // Empty space
 if(""){
     console.log("Empty space : True")
-
 }
 else{
 console.log("Empty space : False")
-
 }
+
 // If is not assign the curly breshes
 
 console.log("----If is not assign the curly breshes---- ")
@@ -63,7 +52,7 @@ console.log("Else : assign the curly breshes second line False ")
 }
 
 
-
+// ------------CONTDITIONAL----------
 // If Else -> True or False 
 // Type of IF -> Ladder Nested 
 //Ladder ->  Priority based
@@ -111,7 +100,7 @@ if(mark2>=60){
 if(mark2<=59){
     console.log("No Grade :Fail")
 }
-// console.log("Type of mark is String Or Number :"+typeof mark)
+console.log("Type of mark is String Or Number :"+typeof mark)
 
 
 // NESTED IF -> if{if} - placing one IF inside the another IF (or) ELSE block
@@ -138,7 +127,7 @@ else{
     console.log("JOB : You are not Eligible")
 }
 
-
+//----ITRETIVE statement----
 //ITRETIVE statement ->Repeatedly execuutes the code 
 //for while do-while 
 // for - Excutes the code in number of times

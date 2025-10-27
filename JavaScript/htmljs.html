@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="head1"></p>
+    <h1 ></h1>
+    <h1 class="head2"></h1>
+    <h2 class="w"></h2>
+    
+    <script>
+        document.getElementsByClassName("w").innerHTML="sdjhns"
+        document.getElementsByClassName("head1").innerHTML="Hello  world  "
+        let head=document.createElement("p")
+        head.className="head1"  
+        head.style.color="blue"
+        console.log(document.getElementsByClassName("head1").textContent)
+    
+        document.getElementById("head2").innerHTML=document.getElementById("head1").textContent
+    </script>
+</body>
+</html>

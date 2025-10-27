@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="d1"></div>
+    <p class="p1">one</p>
+    <p class="p1">two</p>
+    <p class="p1">Three</p>
+    
+    <div id="d2"></div>
+    <script>
+       
+       for(i=0;i<=5;i++){
+        let para=document.createElement("p")
+        para.innerHTML="Name" 
+        document.getElementById("d1").append(para)
+        
+       }
+       console.log(document.getElementsByClassName("p1"))
+       let para1=document.getElementsByClassName("p1")
+       let div1=document.getElementById("d2")
+       for(i=0;i<para1.length;i++){
+        let content=document.getElementsByClassName("p1")[i].textContent
+        let para2=document.createElement("p")
+        para2.textContent=content
+        div1.append(para2)
+       }
+    </script>
+</body>
+</html>

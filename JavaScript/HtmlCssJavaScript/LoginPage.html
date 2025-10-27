@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background: linear-gradient(aliceblue,gray,whitesmoke);
+        background-attachment: fixed;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    /* #f{
+        background-color: yellow;
+        width: 460px;
+        margin: 10vh auto 0 auto;
+        padding: 10px;
+        border-radius: 10px;
+        color: aliceblue; 
+        
+    }
+    #f:hover{
+        transition: 2s;
+        transform: rotate(10deg);
+    } */
+    h1{
+        text-align: center;
+    }
+    #form1{
+        background-color: blue;
+        width: 400px;
+        margin: 20vh auto 0 auto;
+        padding: 30px;
+        border-radius: 10px;
+        color: aliceblue;
+        
+    }
+    #form1 button{
+        background-color: aliceblue;
+        width: 50%;
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 20px 100px;
+        font-size: 17px;
+        cursor: pointer;
+    }
+    
+    .inputgroup{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        
+    }
+    .inputgroup input{
+        border-radius: 5px;
+        border: solid 1px;
+        padding: 5px;
+        margin-top: 2px;
+        font-size: 15px;    
+    }
+    .inputgroup input:focus{
+        outline: none;
+    }
+    .error{
+        color: red;
+        margin-top: 5px;
+    }
+    
+    .inputgroup.succes input{
+        border-color: springgreen;
+
+    }
+    .inputgroup.error input{
+        border-color: springgreen;
+        
+    }
+</style>
+<body>
+    <div id="main">
+        <div id="f">
+        
+        <form action="" id="form1">
+            <h1>Register</h1>
+            <div class="inputgroup">
+                <label for="UserName">UserName</label>
+                <input type="text" id="name" name="Username" placeholder="Username">
+                <div class="error"></div>
+            </div>
+            <div class="inputgroup">
+                <label for="Email">Email</label>
+                <input type="text" id="email" name="Email" placeholder="Enter Mail">
+                <div class="error"></div>
+            </div>
+            <div class="inputgroup">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" placeholder="Enter Password">
+                <div class="error"></div>
+            </div>
+            <button id="b1" type="submit">Submit</button>
+        </form>
+        </div>
+        <script>
+            let form=document.getElementById("form1")
+            let name=document.getElementById("name")
+            let email=document.getElementById("email")
+            let password=document.getElementById("password")
+
+            // validation
+            form.addEventListener('submit',e=>{
+                e.preventdefault();
+                validateinput();
+            })
+            // Trim the validation -> any space are remove
+            function validateinput(){
+                let form1=form.value.trim()
+                let name1=name.value.trim()
+                let email1=e.email.trim()
+                let password1=e.password.trim()
+            }
+            
+        </script>
+    </div>
+</body>
+</html>

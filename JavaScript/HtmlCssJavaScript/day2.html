@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button disabled onclick="click1()" id="b1">Show/Hide</button>
+    <p id="p1">Name</p>
+    <input type="text" onchange="Text(this) ">
+    <script>
+        
+        function Text(e){
+            document.getElementById("p1").innerText=e.value         //Input Name Change
+            if(e.value=="admin"){                                  // Disable for Button
+                document.getElementById("b1").disabled=false;
+            }
+            else{
+                document.getElementById("b1").disabled=true;
+            }
+        }   
+        let change=true;                                           // Button Click  for Word is Hide
+        function click1(){
+            change=!change
+            if(change){
+                document.getElementById("p1").style.display="block"
+            }
+            else{
+                document.getElementById("p1").style.display="none"
+                
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

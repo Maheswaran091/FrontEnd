@@ -24,11 +24,10 @@
    
    
     #main{
-        width: 100vw;
+        width: 99vw;
         height: 100vh; 
         display: flex;
-        background-color: ;
-
+        
 
 
     } 
@@ -39,9 +38,8 @@
         margin-left: 1%;
         padding: 15px;
         padding-left: 20px;
-        position: sticky;
+        position: fixed;
         
-    
         
 
     }
@@ -54,7 +52,8 @@
         margin-left: 7%;
         padding-top: 1px;
         border-radius: 20px;
-        
+        position: relative;
+        z-index: -1;
         font-size: 28px;
         list-style-type: none;
         color: #fff;
@@ -100,14 +99,14 @@
         list-style: none;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         margin-bottom: 5%;
-        border-bottom: 0.5px solid rgba(0, 0, 0, 0.158);
-        
+        border-bottom: 0.5px solid rgba(255, 255, 255, 0.096);
+        width: 88%;
 
     }        
     .ul1 li:hover{        
         color: yellowgreen;   
         transition: 0.5s;
-        border-bottom: 0.5px solid rgb(0, 0, 0);
+        border-bottom: 0.5px solid ;
     }    
         
         
@@ -187,7 +186,7 @@
         background-image: url(img1.png);
         background-repeat: no-repeat;
         background-size: 400px;
-        display: flex;
+        z-index: ;
 
         
     }   
@@ -229,24 +228,26 @@
 
     /* WELCOME TO NEXTCONF */
     #right{
-        background-color: bleviolet;
+        /* background-color: blueviolet; */
         width: 60vw; 
-      
+        position: relative;
+        left: 35%;
+        
     }
       
 
       
     .rightfirstbox{
-        width: 47vw;
+        width: 45vw;
         height:80vh;
-        background-color:rgb(35, 255, 35);
+        background-color:rgb(121, 196, 51);
         border-radius: 20px;
-        margin-left: 2%;
+        
         margin-top: 2%;
         padding: 100px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: black;
-               
+        font-family: "webflow-icons";
+        color: rgb(31, 30, 30);
+        /* filter: brightness(%);        */
 
 
     }
@@ -274,22 +275,24 @@
     /* Right Down Box */
     .rdbox{
         background-color: aqua; 
-        width: 62vw;
+        width: 59.7vw;
         height: 30vh;
-        margin-left: 2%;
-        margin-bottom: 1%;
-        
+        /* margin-left: 2%;
+        margin-bottom: 1%; */
+        position: relative;
+        bottom: 10%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 20px 20px 20px;
 
     }
     .rdbox11{
-        background-color: aquamarine;
+        background-color:  yellow;
         column-gap: 30px;
         text-align: center;
-
+        
     }
+    
 
 
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting</title>
+</head>
+<style>
+   
+</style>
+<body>
+    <!-- paragraph count -->
+    <p id="IncCount">Count:0</p>
+    <!-- Using button -->
+    <button id="IncButton">Inc </button>
+    
+
+    <script>
+        let count=0  //Starting Count
+        let Icount=document.getElementById("IncCount")  //Paragrap tag Count
+        let Ibutton=document.getElementById("IncButton") // Button Tag 
+
+        Ibutton.addEventListener("click",function(){  // Event Listener
+            count++;                                    // Count Increasing
+            Icount.textContent="Count:"+count;          // update the Count
+        })
+
+        
+    </script>
+</body>
+</html>

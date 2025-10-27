@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Slider</title>
+  <style>
+    body{
+      background-color: aliceblue;
+    }
+    img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      margin: 10px auto;
+      border: solid;
+      border-radius: 20px;
+    }
+    button {
+      margin: 5px;
+    }
+    h2{
+      text-align:center;
+    }
+    #buttonstag{
+      text-align:center;
+    }
+
+  </style>
+</head>
+<body>
+  <h2 >Image Slider</h2>
+
+  <!-- Image Display -->
+  <img id="slider" src="" alt="Image Slider">
+
+  <!-- Buttons -->
+  <div id="buttonstag">
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+  </div>
+
+  <script>
+    // Array of image URLs
+    const images = [
+      "https://picsum.photos/300/200?random=1",
+      "https://picsum.photos/300/200?random=2",
+      "https://picsum.photos/300/200?random=3",
+      "https://picsum.photos/300/200?random=4"
+    ];
+
+    // Track current image index
+    let currentIndex = 0;
+
+    // Select elements
+    const slider = document.getElementById("slider");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    // Function to update image
+    function updateImage() {
+      slider.src = images[currentIndex];
+    }
+
+    // Initial image
+    updateImage();
+
+    // Next button click
+    nextBtn.addEventListener("click", function() {
+      currentIndex = (currentIndex + 1) % images.length; // loop forward
+      updateImage();
+    });
+
+    // Previous button click
+    prevBtn.addEventListener("click", function() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length; // loop backward
+      updateImage();
+    });
+  </script>
+</body>
+</html>

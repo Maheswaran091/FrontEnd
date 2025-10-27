@@ -1,0 +1,41 @@
+<p>Hello !</p>
+<p>{{sss}}</p>
+<!-- One Way Binding -> It is Read Only Cannot Update  -->
+<p>{{OWB}}</p> 
+
+<!-- Two Way Binding -> Read and Update  -->
+<p>{{TWB}}</p>
+<p>{{TWB1}}</p>
+<p>{{TWB2}}</p>
+<p>{{TWB3}}</p>
+<!-- ngModole used-> Template Driven Form  -->
+ <input [(ngModel)]="TWB" >  
+<input [(ngModel)]="TWB1" > 
+<input [(ngModel)]="TWB2" > 
+<input [(ngModel)]="TWB3" > 
+<button [disabled]="[TWB.length<3||TWB1.length<3||TWB2.length<3||TWB3.length<3]">Login</button> -->
+
+<!-- Reactive Form -->
+<form [formGroup]="formgroup" (ngSubmit)="callForm()">
+  <input type="text" formControlName="Name">
+  <input type="text" formControlName="username">
+  <input type="text" formControlName="Email">
+  
+  <button [disabled]="this.formgroup.invalid">Submit</button>
+  
+  
+
+</form>
+
+
+<app-childapp [title]="TWB"></app-childapp>
+
+
+<app-cart [bclick]="count" (top arent)="getValue($event)"></app-cart>
+<button (click)="Count()" >+</button>
+<button (click)="Count1()" >-</button>
+
+<p>Recive the Child massage : {{childM}}</p>
+
+<p>cvxxcv</p>
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: aliceblue;
+    }
+    p{
+        background-color: white;
+        border-radius: 70px;
+    }
+    div{
+        background-color: burlywood;
+        border-radius: 70px;
+        
+    }
+    img{
+        border-radius: 30px;
+        align-items: center;
+        margin-left: 42%;
+        margin-top: 1%;
+    }
+    .letter{
+        text-align: center;
+    }
+    /* p{
+        width: 20vw;
+        height: 30vh;
+        background-color: yellowgreen;
+        align-items: center;
+        text-align: center;
+
+        margin: ;
+    } */
+    
+</style>
+<body>
+    
+    <p id="p1"></p>     <!-- Static Way -->
+    <p id="p2">
+    
+    <!-- Looping div  -->
+    <div id="d1"></div>
+    
+    <!-- Reflected the Element -->
+    <p class="p3">One</p>
+    <p class="p3">Two</p>
+    <p class="p3">Three</p>
+    <p class="p3">Four</p>
+    <p class="p3">Five</p>
+    <div id="d2"></div>   
+
+    <!-- Create the Element -->
+    <div id="d3"></div>
+
+    <!-- Img  -->
+    <div id="d4"></div>
+
+    <script>            //<!-- Dynamic Way -->
+        //Using CRUD Operations 
+        document.getElementById("p1").innerHTML="<h1>Name</h1>"     // Upadate
+        document.getElementById("p1").textContent                   //Read and Copy and get
+        document.getElementById("p2").innerHTML=document.getElementById("p1").textContent //Update
+        document.getElementById("p1").remove()          //Remove the Element
+        console.log(document.getElementsByTagName("p"))  // Used to get the Element in all Tagname 
+        console.log(document.querySelector("p"))         // To get First Tag name , 
+        console.log(document.querySelectorAll("p"))     //  To get the Element in all Tagname , To similar the TagName
+
+        // Create the HTML Element in JavaScript 
+        let b=document.createElement("h1")              //Create 
+        b.innerHTML="CAT"
+        b.className="letter"
+        b.style.color="blue"
+        document.getElementById("d3").append(b)
+
+        let im=document.createElement("img")              //Create 
+        im.src="cat.jpg"                                  //Img Add
+        im.style.color="blue"
+        document.getElementById("d4").append(im)
+
+        // Create the HTML Element in JavaScript for Using Looping Concept
+        let d=document.getElementById("d1")
+        for(i=0;i<=5;i++){
+            let para=document.createElement("p")            //Create the Element
+            para.innerHTML="Paragraph"
+            d.append(para)
+        }
+
+        // To Reflected the Element Using Looping
+        // console.log(document.getElementsByClassName("p3"))
+        let copy=document.getElementById("d2")
+        for(i=0;i<=document.getElementsByClassName("p3").length;i++){
+            console.log(document.getElementsByClassName("p3")[i].textContent)
+            copy.append(document.getElementsByClassName("p3")[i].textContent)
+            
+        }
+
+
+
+    </script>
+</body>
+</html>
